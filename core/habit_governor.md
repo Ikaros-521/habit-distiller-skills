@@ -1,88 +1,79 @@
-# Habit Governor: 习惯生命周期治理与全景防熵增引擎 (v2.3)
+# Habit Governor: 习惯生命周期治理与全景防熵增引擎 (v2.4)
 
-本文档定义了 Habit Distiller 如何在提炼与运行个人习惯时进行**手改自愈保护、自然语言一键撤回、长会话低噪音输出、冲突列出对比自选以及弱模型紧凑视图自适应**的标准作业程序（SOP）。
+本文档定义了 Habit Distiller 如何在提炼与运行个人习惯时进行**单域 1+3 聚类浓缩、工具权限缺失主动索权、会话压缩留存快照与一键清单可视化查询**的标准作业程序（SOP）。
 
 ---
 
-## 1. 核心治理机制升级 (v2.3 Architecture)
+## 1. 核心治理机制升级 (v2.4 Architecture)
 
 ```mermaid
 graph TD
-    subgraph 容错与弹性机制 (Resilience & Recovery)
-        A1["1. 手动编辑容错与自愈 (Manual Edit Self-Healing)"]
-        A2["2. 自然语言一键撤回 (Natural Language Undo)"]
-        A3["3. 规则冲突对比自选 (Side-by-Side Conflict Resolution)"]
+    subgraph 开发者掌控与透明交互 (Developer Control & Clarity)
+        A1["1. 一键习惯清单查询 (List Habits: 即时渲染状态计分卡)"]
+        A2["2. 缺失工具主动索权提示 (Missing Tool Permission Prompt)"]
+        A3["3. 会话压缩变化快照 (Compaction Habit Diff Snapshot)"]
     end
 
-    subgraph 效能与交互机制 (Efficiency & Presentation)
-        B1["4. 长会话低噪音提炼 (Low-Noise Compact Diff)"]
-        B2["5. 单一数据双层视图 (Single Source Dual-View for Small Models)"]
+    subgraph 领域防肥胖收敛 (Anti-Bloat Synthesis)
+        B1["4. 单域 1+3 聚类浓缩协议 (1 Core Directive + 3 Boundaries)"]
     end
 
-    A1 & A2 & A3 --> SingleSource["单一真相源 (~/.habit-distiller/habits.md)"]
-    B1 & B2 --> SingleSource
+    A1 & A2 & A3 & B1 --> SingleSource["单一真相源 (~/.habit-distiller/habits.md)"]
 ```
 
 ---
 
 ## 2. 核心机制细则
 
-### 机制一：手动编辑容错与自愈 (Manual Edit Self-Healing)
-- **痛点**：开发者用记事本或编辑器手工修改 `habits.md` 时，随手增加的非标准格式行（如缺失标题、漏掉 domain 标签），极易被后续的自动重写抹除。
-- **自愈铁律**：
-  1. **宽容读取 (Permissive Parsing)**：AI 读取 `habits.md` 时，若发现不符合标准 Markdown 层级的手写内容，一律判定为“用户手工有效项”，**严禁丢弃**；
-  2. **智能吸纳 (Graceful Assimilation)**：在下一次通过对话提炼重写文件时，AI 自动根据手写语义将其归纳至对应的六大 Domain 插槽中，规范化格式的同时 **100% 保护手写成果**；
-  3. **显式反馈**：保存后提示：*“ℹ️ 检测到您手工修改的 X 条内容，已自动规范化融入对应领域。”*
-
----
-
-### 机制二：自然语言一键撤回 (One-Click Undo Protocol)
-- **触发口令**：用户发送“撤回刚才的习惯更新”、“撤销提炼”、“恢复上一版习惯”或“undo habit”。
-- **执行逻辑**：
-  1. AI 检查是否存在 `~/.habit-distiller/habits.md.bak`；
-  2. 若存在，直接将 `.bak` 镜像物理原子替换回 `habits.md`；
-  3. 立即向用户确认：
-     > ✅ *“已为您撤销最近一次的习惯提炼，单一真相源已秒级回滚至上一版镜像状态。”*
-
----
-
-### 机制三：规则冲突并排对比自选 (Side-by-Side Conflict Resolution)
-- **场景**：当导入外部习惯包、团队规则（如 `CLAUDE.md`）与个人习惯互斥时。
-- **交互规范**：AI 严禁擅自覆盖，必须以**并排对比表格**形式呈现差异，供用户自选：
+### 机制一：单域 1+3 聚类浓缩协议 (Per-Domain Anti-Bloat Synthesis)
+- **痛点**：防止单个 Domain 内部不断追加细则，导致一个领域内部堆叠 10 几个子项的“局部肥胖”。
+- **1+3 结构化收敛标准**：每个 Domain 内部**强制规范为“1 条核心行动纲领 + 最多 3 条边界约束指标”**：
   ```markdown
-  ⚠️ 检测到规则互斥冲突：
+  ## [DOMAIN: DEFECT] 缺陷修复与防线规范
+  - **核心行动纲领 (Core Directive)**：在排查或修复目标问题时，发掘出的关联确凿缺陷必须一并无破坏彻底修复。
+  - **边界指标 (Boundaries)**：
+    1. 必须有逻辑矛盾或报错事实证据，严禁风格主观臆断；
+    2. 严格保持公开 API 契约不变，确保 0 回归；
+    3. 修复方案必须提供复现与验证说明。
+  ```
+- **熔断机制**：当同一领域内拟新增第 4 条细则时，治理引擎**自动触发聚类浓缩**，将相似指标提炼合并，严禁列表无限向下无序扩张。
 
-  | 冲突维度 | 规范 A (例如：团队规范 CLAUDE.md) | 规范 B (例如：个人习惯 habits.md) |
-  | :--- | :--- | :--- |
-  | **代码注释语言** | 强制要求英文注释 | 默认中文沟通与注释 |
+---
 
-  请选择您期望的兼容策略（回复数字）：
-  [1] 以项目/规范 A 为准（针对本项目临时或持久让步）
-  [2] 以个人/规范 B 为准（坚持个人既有习惯）
-  [3] 智能折中兼容（例如：代码与注释英文，任务交流与交付总结中文）
+### 机制二：缺失工具权限主动索权提示 (Missing Tool Permission Prompt)
+- **准则**：严禁隐式猜测或假装调用工具。当某个习惯（如构建验证、终端执行）因当前环境未授予工具权限（如缺少 `run_command`）受阻时：
+- **主动交互**：AI 必须直接向用户索权或引导本地执行：
+  > ⚠️ *“遵从您的【连带缺陷验证】习惯需要执行构建测试，但当前窗口未授予终端工具权限。请授予终端权限，或由您在宿主机本地终端运行：`npm test`。”*
+
+---
+
+### 机制三：会话压缩变化快照 (Compaction Habit Invariant Snapshot)
+- **场景**：当会话经过多轮长对话执行 `/compact` 上下文压缩，或在阶段性里程碑总结时。
+- **输出规范**：AI 必须在压缩摘要头部输出一份简明快照，便于用户随时审阅与修正：
+  ```markdown
+  📌 [当前生效习惯快照]
+  - 核心契约：前瞻发散推演 | 连带缺陷清零 | 意图分级自适应(微任务直通) | 双轨交付看板 | 开源双语文档
+  - 作用域状态：当前技术栈命中规则已按需挂载
+  - 如需调整当前协同习惯，可直接输入：“调整习惯 [规则名]”
   ```
 
 ---
 
-### 机制四：长会话低噪音提炼模式 (Low-Noise Compact Distillation)
-- **规范**：在长篇代码调试对话中，提炼确认后的回复严禁铺陈满屏 Diff 干扰注意力。
-- **输出格式**：聊天主界面仅输出 3 行紧凑结论，详细报表自动折叠收起：
+### 机制四：一键习惯清单与状态计分卡 (Habit Scorecard Command)
+- **触发指令**：用户发送“查看我的习惯”、“查看习惯清单”、“习惯状态”或“list habits”。
+- **输出规范**：AI 立即读取 `~/.habit-distiller/habits.md`，以 1 页精炼的**可视化计分卡表格**直接渲染呈现：
   ```markdown
-  ✅ 已完成协同习惯提炼并落盘至 `~/.habit-distiller/habits.md`
-  - 核心变更：[DOMAIN: ...] 新增/更新 [规则名称]
-  - 容灾状态：写前原子镜像 habits.md.bak 已同步就绪
+  ### 📋 您的专属 AI 协同契约清单 (Habit Scorecard)
 
-  <details>
-  <summary>🔍 点击展开查看本次治理 Diff 与体检明细</summary>
+  | 领域插槽 (Domain) | 核心行动纲领 (Core Directive) | 作用域 (Scope) | 状态 |
+  | :--- | :--- | :--- | :--- |
+  | 🧠 **COGNITION** | 深度任务多想 1~2 步，推演隐性盲区与生命周期风险 | `global` | 🟢 活跃 |
+  | 🛡️ **DEFECT** | 确凿关联缺陷顺藤摸瓜一并彻底修复，严格防回归 | `global` | 🟢 活跃 |
+  | 📡 **PROGRESS** | 微任务极速直通秒出结果，重任务步骤心跳可视 | `global` | 🟢 活跃 |
+  | 📊 **DELIVERY** | 终态采用结构化对比表看板与 Artifacts 呈现 | `global` | 🟢 活跃 |
+  | 🌐 **DOCS** | 开源公开项目 README 默认中英双语、中文置顶 | `global` | 🟢 活跃 |
+  | 🚫 **FORBIDDEN** | 严禁私加大型外部库、乱删注释、提交硬编码密钥 | `global` | 🛑 阻断级 |
 
-  [此处折叠渲染完整的四态比对审计表与健康度巡检结果]
-  </details>
+  - 💡 单一真相源路径：`~/.habit-distiller/habits.md` (写前镜像自动备份有效)
+  - 🔧 快捷操作：直接回复“提炼新习惯 [内容]”增补，或“撤回刚才的更新”回滚。
   ```
-
----
-
-### 机制五：弱模型/小模型兼容与“单一真相源双层视图”
-（详细技术原理解析见下文系统说明）
-- 采用 **“单一存储、按需精简渲染 (Single Source, Dual-View Rendering)”**：
-  - 物理文件始终保持标准富文本格式；
-  - 面向指令遵从能力较弱的小模型（如本地 7B/1.5B 模型），在调用 Skill 时前置通过正则滤除 Mermaid 图表、冗余案例与背景说明，仅动态注入**纯原语原子清单（每条不超过 20 字的 Checklists）**，确保小模型不出现注意力分散或幻觉。
