@@ -8,7 +8,7 @@ HABITS_DIR="$HOME/.habit-distiller"
 HABITS_FILE="$HABITS_DIR/habits.md"
 PROFILES_DIR="$HABITS_DIR/profiles"
 
-echo "=== Habit Distiller 跨机同步与管理工具 (v2.6) ==="
+echo "=== Habit Distiller 跨机同步与管理工具 (v2.7) ==="
 
 case "$TARGET" in
     "install-global")
@@ -115,6 +115,10 @@ case "$TARGET" in
         if [ -z "$PARAM_TWO" ] || [ ! -f "$PARAM_TWO" ]; then
             echo "错误: 请指定有效的导入文件路径，例如: ./scripts/sync.sh import ./my-habits-export.md"
             exit 1
+        fi
+        # Security scanner
+        if grep -Ei "(ignore (all )?previous instructions|system:\s*override|rm -rf\s+/)" "$PARAM_TWO" >/dev/null 2>&1; then
+            echo "⚠️ [安全预警] 检测到导入文件中包含潜在的高危越狱/恶意指令模式，请谨慎核查！"
         fi
         mkdir -p "$HABITS_DIR"
         if [ -f "$HABITS_FILE" ]; then

@@ -10,7 +10,7 @@ $HabitsConfigDir = "$HOME\.habit-distiller"
 $HabitsConfigFile = "$HabitsConfigDir\habits.md"
 $ProfilesDir = "$HabitsConfigDir\profiles"
 
-Write-Host "=== Habit Distiller Portable Sync & Management Tool (v2.6) ===" -ForegroundColor Cyan
+Write-Host "=== Habit Distiller Portable Sync & Management Tool (v2.7) ===" -ForegroundColor Cyan
 
 switch ($Target.ToLower()) {
     "install-global" {
@@ -144,6 +144,13 @@ switch ($Target.ToLower()) {
             Write-Error "Please provide a valid file path to import, e.g.: .\scripts\sync.ps1 -Target import -FilePath .\my-habits-export.md"
             return
         }
+        # Security scanner
+        $ImportContent = Get-Content $FilePath -Raw
+        if ($ImportContent -match "(?i)(ignore (all )?previous instructions|system:\s*override|rm -rf\s+/)") {
+            Write-Warning "SECURITY NOTICE: Potential prompt injection / high-risk instruction detected in $FilePath!"
+            Write-Host "Pattern matched. Please review the file carefully before continuing." -ForegroundColor Red
+        }
+
         if (-not (Test-Path $HabitsConfigDir)) {
             New-Item -ItemType Directory -Path $HabitsConfigDir -Force | Out-Null
         }

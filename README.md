@@ -2,10 +2,10 @@
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
-  <img src="https://img.shields.io/badge/Version-2.6.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Version-2.7.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
-  <img src="https://img.shields.io/badge/Workspace%20Cascade-Supported-purple" alt="Workspace Cascade">
-  <img src="https://img.shields.io/badge/Fact--Based%20Audit-Enforced-orange" alt="Fact-Based Audit">
+  <img src="https://img.shields.io/badge/Conversational%20Branching-Supported-purple" alt="Conversational Branching">
+  <img src="https://img.shields.io/badge/Habit%20TTL-Active-orange" alt="Habit TTL">
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
@@ -15,44 +15,40 @@
 
 ## 🇨🇳 中文文档
 
-**Habit Distiller Skills (v2.6)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、工作区零污染层叠、事实证据履约核验与高弹性自愈系统**。
+**Habit Distiller Skills (v2.7)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、口语化建档、临时习惯 TTL 治理、工作区零污染层叠与事实证据核验系统**。
 
-它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过零侵入伴生机制、工作区层叠、事实证据核验、并发防写冲突、意图分级自适应、单域 1+3 聚类浓缩与手改自愈保护，实现真正透明、可控且纯净的 AI 协同体验。
+它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过零侵入伴生机制、口语化档案分支、临时战役规则生命周期、工作区层叠、真实证据核验与手改自愈保护，实现真正透明、可控且纯净的 AI 协同体验。
 
-### 🌟 v2.6 进阶亮点与控制力设计
+### 🌟 v2.7 进阶亮点与控制力设计
 
-#### 1. 工作区零污染层叠继承 (Workspace Cascade)
-- 全局习惯是“中英双语”，但当前正在维护纯英文开源项目或公司内部闭源仓库？
-- **零污染探测机制**：项目根目录仅需一个 `.habit-profile` 声明档案指向（如 `profile: work`）。
-- **0% 代码库污染**：脚本自动将 `.habit-profile` 注入本地 `.git/info/exclude`，**无需修改项目的 `.gitignore`**，Git 状态保持绝对纯净。
+#### 1. 口语化自然语言新建/克隆档案 (Conversational Profile Branching)
+- 想要针对 Rust 或 Python 项目单独新建一套规约？无需退出敲脚本，直接在会话中对 AI 提出：
+  > “保存当前习惯为档案 rust” 或 “新建习惯档案 python”
+- AI 自动在 `~/.habit-distiller/profiles/<name>.md` 落盘持久化，后续随时自然切换。
 
-#### 2. 真实事实证据链履约核验 (Fact-Based Compliance Proof)
-- **彻底杜绝模型阳奉阴违**：拒绝模型形式主义打虚假勾！在重任务交付看板的【习惯契约核验】中：
-  - **必须给出事实实据**：连带排查了哪些文件、行号与调用链路，证实为何无次生 Bug；或提供验证单测的执行命令与结果；
-  - 若未发现连带缺陷，必须写明判定依据；
-  - **无实据一律判定为未真正履约**。
+#### 2. 临时/战役期习惯生命周期与退场 (Habit TTL & Expiration)
+- 短期攻坚（如“这周做安全合规重构，每个接口必须打审计日志”）的规则，战役结束后不再长期赖在黄金底座里：
+  - 提炼时允许声明有效期：`[Scope: global, TTL: 7d]`；
+  - 到期后，AI 在查看清单时主动出具提示卡：`[1] 战役结束注销 (推荐)` / `[2] 转正为常驻契约` / `[3] 延期`。
 
-#### 3. 多会话并发写冲突保护 (Concurrent Write Protection)
-- 多个 AI IDE 窗口（如 Antigravity 与 Cursor 同时运行）并发提炼或切换习惯时：
-- 系统内置写前 mtime 时间戳校验。若磁盘文件在会话执行期间已被外部更新，自动执行聚类合并并提醒，防止无脑盲写覆盖。
+#### 3. 外部档案导入安全预警与用户自主裁决 (Import Security Advisory)
+- 导入同事或社区分享的 `.md` 档案时，系统内置敏感模式扫描，识别 `Ignore previous instructions` 或越狱高危指令：
+- **不擅自武断拦截，而是出具预警卡由开发者自主裁决**（剔除可疑行 / 强制信任导入 / 终止导入），把掌控权牢牢交还给开发者。
 
-#### 4. 跨进程运行时缓存失效感知提示 (Runtime Cache Invalidation Notice)
-- 在某个窗口切换档案或更新习惯后，AI 自动在末尾输出版本心跳与感知提示：
-  > 💡 *版本快照：v2.6 [时间戳] · 当前生效档案：[work]<br>📌 跨窗口提示：若在其他 IDE（如 Cursor、Trae）中有常驻运行的长会话，建议开启新对话以加载最新生效契约。*
+#### 4. 冷启动无文件优雅容错 (Graceful Cold-Start Degradation)
+- 新用户通过 `npx skills add` 安装后，本机尚未生成 `habits.md` 时：
+- AI 绝对不抛异常或中断报错，视为空白基准正常执行业务代码，静候用户后续自然触发提炼。
 
-#### 5. 多套场景习惯档案无缝切换 (Multi-Profile Switcher)
-- 支持在 `~/.habit-distiller/profiles/` 下维护多套独立档案（如 `work`、`open-source`、`default`）：
-  > “切换习惯 work” 或 “使用开源档案”
-- 瞬间原子切换，跨所有 AI IDE 立即生效。
+#### 5. 工作区零污染层叠继承 (Workspace Cascade)
+- 项目根目录仅需一个 `.habit-profile` 声明档案指向（如 `profile: work`）。
+- 自动写入本地私有忽略文件 `.git/info/exclude`，**0% 污染代码库**，免去跨项目反复手动切换。
 
-#### 6. 单条习惯定向精准注销 (Targeted Habit Deletion)
-- 补齐 CRUD 闭环！支持自然语言靶向拔除指定规则：
-  > “删除习惯 开源双语文档” 或 “注销第 3 条习惯”
-- 自动生成镜像备份 `habits.md.bak`，精准剔除目标条目，其余规则完好无损。
+#### 6. 真实事实证据链履约核验 (Fact-Based Compliance Proof)
+- 交付看板中【习惯契约核验】单元格**必须包含真实查验实据**（关联文件:行号、单测命令、或无连带 Bug 的逻辑判定依据），严禁空洞打勾、杜绝阳奉阴违。
 
 ---
 
-### 🗂️ 六维领域插槽 (Domain Taxonomy v2.6)
+### 🗂️ 六维领域插槽 (Domain Taxonomy v2.7)
 
 1. 🧠 **`[DOMAIN: COGNITION]` 认知推演与设计前瞻**：重任务主动多想 1~2 步，推演潜在缺陷与生命周期盲区；
 2. 🛡️ **`[DOMAIN: DEFECT]` 缺陷修复与防线规范**：连带确凿缺陷无破坏一并彻底修复；
@@ -78,7 +74,7 @@ npx skills add Ikaros-521/habit-distiller-skills -g
 .\scripts\sync.ps1 -Target switch-profile -ProfileName work   # 全局切换至 work 工作档案
 .\scripts\sync.ps1 -Target list-profiles                     # 列出本机所有可用档案
 .\scripts\sync.ps1 -Target export -FilePath .\my-habits.md   # 导出当前习惯
-.\scripts\sync.ps1 -Target import -FilePath .\my-habits.md   # 导入习惯
+.\scripts\sync.ps1 -Target import -FilePath .\my-habits.md   # 导入习惯 (带安全扫描)
 ```
 
 ```bash
@@ -88,24 +84,24 @@ npx skills add Ikaros-521/habit-distiller-skills -g
 ./scripts/sync.sh switch-profile open-source                 # 全局切换至开源档案
 ./scripts/sync.sh list-profiles                              # 列出本机档案
 ./scripts/sync.sh export ./my-habits.md                      # 导出习惯
-./scripts/sync.sh import ./my-habits.md                      # 导入习惯
+./scripts/sync.sh import ./my-habits.md                      # 导入习惯 (带安全扫描)
 ```
 
 ---
 
 ## 🇺🇸 English Documentation
 
-**Habit Distiller Skills (v2.6)** is a zero-intrusion work-contract guardian, workspace-cascaded profiler, and fact-verified governance system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
+**Habit Distiller Skills (v2.7)** is a zero-intrusion work-contract guardian, conversational profile brancher, temporary habit TTL lifecycle governor, and fact-verified pairing system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
 
-It firmly establishes a foundational truth: **the system extracts not the model's ego or habits, but the explicit contract for how the developer expects the AI to work**. Through zero-intrusion sidecar storage, workspace profile cascading, fact-based compliance proof (zero rubber-stamping), concurrent write protection, targeted habit deletion, intent-adaptive depth, and permissive self-healing, it delivers a transparent, controllable, and pristine AI pair-programming experience.
+It firmly establishes a foundational truth: **the system extracts not the model's ego or habits, but the explicit contract for how the developer expects the AI to work**. Through conversational profile branching, habit TTL expiration, zero-pollution workspace cascading, fact-based compliance proof, import security advisory, and permissive self-healing, it delivers a transparent, controllable, and pristine AI pair-programming experience.
 
-### 🌟 New in v2.6: Workspace Cascading & Fact-Based Verification
+### 🌟 New in v2.7: Conversational Branching & Lifecycle TTL
 
-1. **Workspace Profile Cascading (`.habit-profile`)**: Bind a specific habit profile to any project workspace with 0% git pollution (automatically declared via `.git/info/exclude` without modifying `.gitignore`).
-2. **Fact-Based Compliance Proof (Anti-Rubber-Stamping)**: Enforces verifiable concrete evidence in the delivery dashboard (e.g. specific inspected files, lines, and test outputs); empty checkmarks or rubber-stamping are strictly disallowed.
-3. **Concurrent Write Protection**: Read-before-write timestamp validation prevents multi-agent write collisions across simultaneous IDE sessions.
-4. **Runtime Cache Invalidation Notice**: Automatic cross-window reminders prompting developers to refresh or restart long-running sessions when habits change.
-5. **Multi-Profile Switcher & Targeted Deletion**: Instant swapping of profiles (`switch-profile`) and surgical removal of individual rules (`删除习惯 [名称]`).
+1. **Conversational Profile Branching (`新建习惯档案 [名称]`)**: Create or fork named profiles on the fly directly inside chat sessions without touching shell scripts.
+2. **Temporary Habit TTL & Lifecycle Expiration (`[TTL: 7d]`)**: Annotate short-lived sprint rules with expiration periods; prompt developers to formalize, renew, or decommission them upon expiry to prevent zombie rules.
+3. **Import Security Advisory Warning**: Scans imported `.md` files for jailbreak or high-risk patterns, presenting an interactive advisory alert for the developer's final verdict.
+4. **Graceful Cold-Start Degradation**: When installed via `npx skills add` without local setup scripts, the agent gracefully treats missing configs as empty baselines without throwing errors.
+5. **Workspace Profile Cascading & Fact-Based Proof**: Zero-pollution `.habit-profile` (isolated in `.git/info/exclude`) and verifiable factual evidence in summary audit cells.
 
 ---
 
