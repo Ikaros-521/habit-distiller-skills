@@ -42,7 +42,7 @@ graph TD
 ### 维度四：终态交付偏好 (Delivery Aesthetics)
 - **分析重点**：
   - 交付结构（如 STE 规范、Before/After 对照表、Mermaid 流程图、Artifacts 看板）。
-  - 语言与术语标准（必须中文、固定指令等）。
+  - 语言与术语标准（如默认中文、双语 README 等）。
 
 ---
 
@@ -60,7 +60,29 @@ graph TD
 1. **[规则命名]**：[具体、可执行、无歧义的行为准则，必须包含触发条件与边界]
 2. **[规则命名]**：[具体准则]
 
-#### 【适配目标】
-- [x] 全局规则 (如 GEMINI.md / CLAUDE.md / .cursorrules)
-- [ ] 项目级规则
+#### 【落盘存储目标推荐】
+请选择您希望保存的位置（回复对应序号）：
+- [1] **当前项目生效**（写入当前工程根目录规则文件）
+- [2] **本机全局生效**（写入您当前 IDE 的用户全局家目录）
 ```
+
+---
+
+## 4. 新用户落盘定位树 (Target Storage Resolution Tree)
+
+当新用户批准写入规则时，AI 依据其**当前运行的 IDE 环境**与**用户的选项（项目级 vs 全局）**，精准定位落盘路径：
+
+| 当前 AI IDE 环境 | 选项 1：当前项目级生效路径 | 选项 2：本机全局级生效路径 |
+| :--- | :--- | :--- |
+| **Trae (字节跳动)** | `<当前工程>/.trae/rules.md` | `~/.trae/rules.md` |
+| **Claude Code** | `<当前工程>/CLAUDE.md` | `~/.claude/CLAUDE.md` |
+| **Cursor** | `<当前工程>/.cursorrules` | `~/.cursor/rules/personal.mdc` |
+| **Windsurf** | `<当前工程>/.windsurfrules` | `~/.codeium/windsurf/memories/global_rules.md` |
+| **DeepSeek (dsh)** | `<当前工程>/.dsh/rules.md` | `~/.dsh/config.toml` |
+| **OpenCode** | `<当前工程>/.opencode/rules.md` | `~/.opencode/rules.md` |
+| **Antigravity / Gemini** | `<当前工程>/GEMINI.md` | `~/.gemini/GEMINI.md` |
+| **ZCode** | `<当前工程>/.zcode/rules.md` | `~/.zcode/rules.md` |
+| **Qoder** | `<当前工程>/.qoderules` | `~/.qoder/rules.md` |
+| **Codex / Copilot** | `<当前工程>/.github/copilot-instructions.md` | VS Code 全局扩展自定义指令 |
+
+> 💡 **安全底线**：无论新用户存到项目级还是全局级，均属于其**本地私有文件**，绝不会触碰或修改 `habit-distiller-skills` 源码仓库，杜绝数据外泄。
