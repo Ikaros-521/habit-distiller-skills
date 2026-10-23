@@ -1,19 +1,20 @@
-# Habit Distiller Skills (个人习惯协助提炼与守护系统)
+# Habit Distiller Skills (个人习惯协助提炼与守护系统 - 轻量版)
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
   <img src="https://img.shields.io/badge/Design-KISS%20%26%20Zero%20Pollution-blue" alt="KISS">
+  <img src="https://img.shields.io/badge/Branch-Lightweight-orange" alt="Lightweight">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/Vercel%20Skills-Compatible-black.svg" alt="Skills CLI">
 </p>
 
-[**简体中文**](#-中文文档) | [**English**](#-english-documentation)
+[**English Document (英文文档)**](README_en.md) | [🚩 **全功能主线 (Main Branch)**](https://github.com/Ikaros-521/habit-distiller-skills/tree/main)
 
 ---
 
-## 🇨🇳 中文文档
+## 🇨🇳 项目概览
 
-**Habit Distiller Skills** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity 等）的**个人协同习惯协助提炼与守护技能**。
+**Habit Distiller Skills (轻量版)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity 等）的**个人协同习惯协助提炼与守护技能**。
 
 ### 🎯 核心目标：协助提炼，不做过度设计
 
@@ -42,6 +43,10 @@
 
 #### 全局安装 (所有支持 skills 的 AI IDE 通用)
 ```bash
+# 安装轻量版
+npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
+
+# 安装主线全功能版
 npx skills add Ikaros-521/habit-distiller-skills -g
 ```
 
@@ -59,30 +64,6 @@ npx skills add Ikaros-521/habit-distiller-skills -g
 ./scripts/sync.sh export ./my-habits.md                      # 导出习惯文件
 ./scripts/sync.sh import ./my-habits.md                      # 导入习惯文件
 ```
-
----
-
-## 🇺🇸 English Documentation
-
-**Habit Distiller Skills** is a lightweight, zero-pollution AI agent skill designed to **help developers distill and enforce personal pair-programming habits** across modern AI IDEs (Trae, Claude Code, Cursor, Antigravity, etc.).
-
-### 🎯 Core Purpose: Assist Distillation, Zero Over-Engineering
-
-Instead of endlessly repeating the same instructions across chats, Habit Distiller catches your workflow corrections, crystallizes them into clear, actionable work contracts, and saves them locally to `~/.habit-distiller/habits.md`.
-
-- **Zero Codebase Pollution**: Habits reside strictly in your user home directory, never altering project repositories.
-- **Human-in-the-Loop**: AI always drafts the rule and asks for your confirmation before persisting.
-- **Instant Rollback**: Pre-write `.bak` backups allow one-phrase undo anytime.
-- **KISS & Lean**: Maintains 5~8 golden rules total, keeping prompt overhead tiny and models responsive.
-
----
-
-### 💬 Natural Language Commands
-
-- **Distill**: Say *"Distill my habit: ... "* or *"Extract our working habit from this fix"*.
-- **List**: Say *"List my habits"* or *"Show habit scorecard"*.
-- **Delete**: Say *"Delete habit [name]"*.
-- **Undo**: Say *"Undo last habit update"*.
 
 ---
 
