@@ -3,13 +3,17 @@
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
   <img src="https://img.shields.io/badge/Version-2.9.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Edition-Full%20Featured-purple" alt="Full Featured">
+  <img src="https://img.shields.io/badge/Lightweight%20Branch-Available-orange" alt="Lightweight">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
-  <img src="https://img.shields.io/badge/Structural%20Self--Healing-Active-brightgreen" alt="Structural Self-Healing">
-  <img src="https://img.shields.io/badge/Zero--Tool%20Latency-Active-brightgreen" alt="Zero Latency">
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
-[**简体中文**](#-中文文档) | [**English**](#-english-documentation)
+[**简体中文**](#-中文文档) | [**English**](#-english-documentation) | [🌿 **轻量精简版 (Lightweight Branch)**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight)
+
+> 💡 **版本选装指引**：
+> - **主线版本 (`main`)**：**全功能企业级治理版**（大纲骨架自愈、多档案无缝切换、事实证据链核验、冲突统一揭示、工作区零污染层叠）；
+> - **轻量版本 (`lightweight`)**：**KISS 极简版**（仅 35 行核心规则，只聚焦“意图捕捉 $\to$ 草案确认 $\to$ 安全落盘”三步法），如需轻量版请访问 👉 [**lightweight 分支**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight)。
 
 ---
 
@@ -60,9 +64,14 @@
 
 ### 🚀 安装、分发与跨机管理
 
-#### 全局安装 (所有支持 skills 的 AI IDE 通用)
+#### 全局安装与版本选装 (所有支持 skills 的 AI IDE 通用)
+
 ```bash
+# 选项 A：安装全功能主线版 (默认 main 分支)
 npx skills add Ikaros-521/habit-distiller-skills -g
+
+# 选项 B：安装极简轻量版 (仅 35 行核心规则，无多余理论包袱)
+npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
 ```
 
 #### 本地跨机脚本管理
@@ -92,7 +101,19 @@ npx skills add Ikaros-521/habit-distiller-skills -g
 
 **Habit Distiller Skills (v2.9)** is a zero-intrusion work-contract guardian, structural heading self-healer, transparent rollback confirmer, and factual tool-resilient pairing system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
 
-It firmly establishes a foundational truth: **the system extracts not the model's ego or habits, but the explicit contract for how the developer expects the AI to work**. Through lossless structural heading self-healing, clear rollback explanations, factual tool error transparency, in-memory zero-tool caching on fast path, and dynamic language scoping, it delivers a transparent, controllable, and pristine AI pair-programming experience.
+> 💡 **Edition Guide**:
+> - **Main Edition (`main`)**: **Full-Featured Governance Edition** (lossless heading self-healing, multi-profile switcher, fact-based compliance proof, unified conflict resolution, workspace cascading).
+> - **Lightweight Edition (`lightweight`)**: **KISS Minimalist Edition** (35-line lean definition, strictly focused on 3-step habit distillation). Visit the 👉 [**lightweight branch**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight).
+
+### 🌟 Installation by Edition
+
+```bash
+# Option A: Install Full-Featured Edition (main branch)
+npx skills add Ikaros-521/habit-distiller-skills -g
+
+# Option B: Install Minimalist Lightweight Edition (lightweight branch)
+npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
+```
 
 ### 🌟 New in v2.9: Structural Resilience & Transparent Rollback
 
