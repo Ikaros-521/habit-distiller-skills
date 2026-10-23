@@ -1,57 +1,59 @@
 #!/usr/bin/env bash
 set -e
 
-TARGET=${1:-"global-gemini"}
-PROJECT_PATH=${2:-""}
-
+TARGET=${1:-"install-global"}
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-echo "=== Habit Distiller Rule Sync Tool (Bash) ==="
+echo "=== Habit Distiller 零侵入全局挂载工具 (Bash) ==="
 
 case "$TARGET" in
-    "global-gemini")
-        DEST_DIR="$HOME/.gemini"
-        DEST_RULE="$DEST_DIR/GEMINI.md"
-        DEST_SKILL="$DEST_DIR/config/skills/habit-distiller"
+    "install-global")
+        # 1. Antigravity / Gemini
+        GEMINI_SKILL="$HOME/.gemini/config/skills/habit-distiller"
+        mkdir -p "$GEMINI_SKILL"
+        cp -r "$REPO_ROOT/skills/habit-distiller/"* "$GEMINI_SKILL/"
+        echo " [OK] 已挂载至 Antigravity: $GEMINI_SKILL"
 
-        echo "Syncing to global Antigravity / Gemini configuration..."
-        mkdir -p "$DEST_SKILL"
-        sed -n '/```markdown/,/```/p' "$REPO_ROOT/adapters/gemini.md" | sed '1d;$d' > "$DEST_RULE"
-        echo " [OK] Updated global rule: $DEST_RULE"
-        cp -r "$REPO_ROOT/skills/habit-distiller/"* "$DEST_SKILL/"
-        echo " [OK] Synced skill directory: $DEST_SKILL"
-        ;;
-    "project")
-        if [ -z "$PROJECT_PATH" ]; then
-            echo "Error: Please specify target project path."
-            exit 1
+        # 2. Claude Code
+        if [ -d "$HOME/.claude" ]; then
+            CLAUDE_SKILL="$HOME/.claude/skills/habit-distiller"
+            mkdir -p "$CLAUDE_SKILL"
+            cp -r "$REPO_ROOT/skills/habit-distiller/"* "$CLAUDE_SKILL/"
+            echo " [OK] 已挂载至 Claude Code: $CLAUDE_SKILL"
         fi
-        echo "Syncing all IDE rules to target project: $PROJECT_PATH"
-        
-        # 1. Claude Code
-        cp "$REPO_ROOT/adapters/claude.md" "$PROJECT_PATH/CLAUDE.md"
-        # 2. Cursor
-        cp "$REPO_ROOT/adapters/cursor.md" "$PROJECT_PATH/.cursorrules"
-        # 3. Windsurf
-        cp "$REPO_ROOT/adapters/windsurf.md" "$PROJECT_PATH/.windsurfrules"
-        # 4. Trae
-        mkdir -p "$PROJECT_PATH/.trae" && cp "$REPO_ROOT/adapters/trae.md" "$PROJECT_PATH/.trae/rules.md"
-        # 5. ZCode
-        mkdir -p "$PROJECT_PATH/.zcode" && cp "$REPO_ROOT/adapters/zcode.md" "$PROJECT_PATH/.zcode/rules.md"
-        # 6. Qoder
-        cp "$REPO_ROOT/adapters/qoder.md" "$PROJECT_PATH/.qoderules"
-        # 7. dsh
-        mkdir -p "$PROJECT_PATH/.dsh" && cp "$REPO_ROOT/adapters/dsh.md" "$PROJECT_PATH/.dsh/rules.md"
-        # 8. OpenCode
-        mkdir -p "$PROJECT_PATH/.opencode" && cp "$REPO_ROOT/adapters/opencode.md" "$PROJECT_PATH/.opencode/rules.md"
-        # 9. Pi
-        mkdir -p "$PROJECT_PATH/.pi" && cp "$REPO_ROOT/adapters/pi.md" "$PROJECT_PATH/.pi/rules.md"
-        # 10. Codex / Copilot
-        mkdir -p "$PROJECT_PATH/.github" && cp "$REPO_ROOT/adapters/codex.md" "$PROJECT_PATH/.github/copilot-instructions.md"
 
-        echo " [OK] All AI IDE rules dispatched successfully!"
+        # 3. 初始化独立真相源 ~/.habit-distiller/habits.md
+        HABITS_DIR="$HOME/.habit-distiller"
+        HABITS_FILE="$HABITS_DIR/habits.md"
+        mkdir -p "$HABITS_DIR"
+        if [ ! -f "$HABITS_FILE" ]; then
+            cat << 'EOF' > "$HABITS_FILE"
+# 开发者个人专属协同习惯 (Personal Habits Profile)
+> 本文件由 habit-distiller 独立维护，作为所有 AI IDE 会话共享的单一真相源。
+> 绝不侵入、篡改任何项目的代码库或 IDE 原生规则文件。
+
+---
+
+## 1. 缺陷修复与防线规范
+- **缺陷连带清零 (Chain Bug Sweep)**：排查中关联确凿缺陷无破坏一并彻底修复。
+
+## 2. 运行过程透明度规范
+- **运行过程反馈 (Observable Progress Feedback)**：多步排查与长流程输出关键节点反馈。
+
+## 3. 终态交付展示规范
+- **双轨化交付展现 (Dual-Track Delivery Dashboard)**：终态总结采用结构化看板呈现。
+
+## 4. 开源文档国际化规范
+- **开源双语文档 (Bilingual README Protocol)**：面向公开开源项目，文档默认中英双语、中文置顶。
+EOF
+            echo " [OK] 已初始化独立配置文件: $HABITS_FILE"
+        else
+            echo " [OK] 现有专属习惯文件已保留: $HABITS_FILE"
+        fi
+
+        echo "SUCCESS: 全局零侵入部署完成！"
         ;;
     *)
-        echo "Unknown target: $TARGET"
+        echo "未知目标: $TARGET"
         ;;
 esac

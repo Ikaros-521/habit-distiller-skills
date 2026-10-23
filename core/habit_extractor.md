@@ -1,4 +1,4 @@
-# Habit Distiller Core: 习惯逆向提炼引擎
+# Habit Distiller Core: 零侵入习惯逆向提炼引擎
 
 本文档定义了 AI 逆向分析用户与 AI 交互历史、提炼个人专属开发习惯并转化为可执行规则的元提示词（Meta-Prompt）与标准作业程序（SOP）。
 
@@ -21,7 +21,7 @@ graph TD
     A --> C["2. 工程执行倾向 (Engineering Habits)"]
     A --> D["3. 交互与过程透明度 (Interaction Feedback)"]
     A --> E["4. 终态交付偏好 (Delivery Aesthetics)"]
-    B & C & D & E --> F["标准化规则输出 (Adapter Ready)"]
+    B & C & D & E --> F["单一真相源: ~/.habit-distiller/habits.md"]
 ```
 
 ### 维度一：缺陷与返工溯源 (Anti-Patterns)
@@ -48,7 +48,7 @@ graph TD
 
 ## 3. 习惯固化提炼模板（输出给用户审核）
 
-提炼完成后，AI **严禁**直接静默修改底层规则，必须按照以下格式向用户提请审核：
+提炼完成后，AI **严禁**直接静默修改任何文件，必须按照以下格式向用户提请审核：
 
 ```markdown
 ### 🎯 对话习惯提炼与沉淀建议
@@ -60,29 +60,16 @@ graph TD
 1. **[规则命名]**：[具体、可执行、无歧义的行为准则，必须包含触发条件与边界]
 2. **[规则命名]**：[具体准则]
 
-#### 【落盘存储目标推荐】
-请选择您希望保存的位置（回复对应序号）：
-- [1] **当前项目生效**（写入当前工程根目录规则文件）
-- [2] **本机全局生效**（写入您当前 IDE 的用户全局家目录）
+#### 【落盘目标】
+- 目标路径：`~/.habit-distiller/habits.md`（当前开发者全局独立生效）
+- 零侵入保障：对当前项目工程代码库 0 侵入，不篡改任何现有 IDE 规则文件
 ```
 
 ---
 
-## 4. 新用户落盘定位树 (Target Storage Resolution Tree)
+## 4. 零侵入存储机制 (Zero-Intrusion Persistence)
 
-当新用户批准写入规则时，AI 依据其**当前运行的 IDE 环境**与**用户的选项（项目级 vs 全局）**，精准定位落盘路径：
-
-| 当前 AI IDE 环境 | 选项 1：当前项目级生效路径 | 选项 2：本机全局级生效路径 |
-| :--- | :--- | :--- |
-| **Trae (字节跳动)** | `<当前工程>/.trae/rules.md` | `~/.trae/rules.md` |
-| **Claude Code** | `<当前工程>/CLAUDE.md` | `~/.claude/CLAUDE.md` |
-| **Cursor** | `<当前工程>/.cursorrules` | `~/.cursor/rules/personal.mdc` |
-| **Windsurf** | `<当前工程>/.windsurfrules` | `~/.codeium/windsurf/memories/global_rules.md` |
-| **DeepSeek (dsh)** | `<当前工程>/.dsh/rules.md` | `~/.dsh/config.toml` |
-| **OpenCode** | `<当前工程>/.opencode/rules.md` | `~/.opencode/rules.md` |
-| **Antigravity / Gemini** | `<当前工程>/GEMINI.md` | `~/.gemini/GEMINI.md` |
-| **ZCode** | `<当前工程>/.zcode/rules.md` | `~/.zcode/rules.md` |
-| **Qoder** | `<当前工程>/.qoderules` | `~/.qoder/rules.md` |
-| **Codex / Copilot** | `<当前工程>/.github/copilot-instructions.md` | VS Code 全局扩展自定义指令 |
-
-> 💡 **安全底线**：无论新用户存到项目级还是全局级，均属于其**本地私有文件**，绝不会触碰或修改 `habit-distiller-skills` 源码仓库，杜绝数据外泄。
+经用户确认后，AI 执行落盘：
+1. **目标文件**：统一写入用户家目录的 `~/.habit-distiller/habits.md`（Windows 下为 `$HOME/.habit-distiller/habits.md`）；
+2. **格式规范**：以结构化 Markdown 小节追加或更新；
+3. **安全边界**：严禁创建或修改任何工作区目录下的 `CLAUDE.md`、`.cursorrules`、`GEMINI.md` 等文件。

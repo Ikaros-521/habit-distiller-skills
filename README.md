@@ -1,11 +1,11 @@
-# Habit Distiller Skills (AI 对话习惯提炼与全生态规则管理框架)
+# Habit Distiller Skills (零侵入全局伴生习惯管理系统)
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/Vercel%20Skills-Compatible-black.svg" alt="Skills CLI">
-  <img src="https://img.shields.io/badge/Architecture-Decoupled%20%26%20Private-orange" alt="Architecture">
-  <img src="https://img.shields.io/badge/IDE%20Adapters-11%2B%20Supported-purple" alt="Supported IDEs">
+  <img src="https://img.shields.io/badge/Architecture-Zero--Intrusion%20Sidecar-orange" alt="Architecture">
+  <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
 [**简体中文**](#-中文文档) | [**English**](#-english-documentation)
@@ -14,140 +14,114 @@
 
 ## 🇨🇳 中文文档
 
-**Habit Distiller Skills** 是一个面向现代主流 AI 编程助手（AI IDEs）的**通用习惯提炼、规则固化与跨平台分发框架**。
+**Habit Distiller Skills** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**零侵入全局伴生习惯管理与动态注入框架**。
 
-遵循 **第一性原理** 与 **KISS 原则**，它将人机协作中的“反复纠偏”与“返工痛点”逆向转化为可执行的原子规则。系统采用**“引擎、预设、模板、私有数据”四层彻底解耦设计**，确保公共代码纯粹通用的同时，开发者个人的私有指令与偏好完全保存在本地，绝不上云。
+遵循 **第一性原理** 与 **KISS 原则**，它彻底解决了人机协同中的“反复纠偏”痛点，同时**坚决杜绝侵入式修改项目代码库或篡改 IDE 原生规则文件**（如 `CLAUDE.md`、`.cursorrules`、`GEMINI.md`），保证团队 Git 提交树与项目工程 100% 纯净。
 
-### 🏗️ 解耦架构与隐私保护
+### 🌟 核心理念：为什么需要“零侵入 Sidecar 伴生架构”？
+
+- **传统方案的弊端**：直接把个人偏好写入项目的 `CLAUDE.md` 或 `.cursorrules`，相当于把个人环境变量硬写进团队公共代码仓库，既污染团队 Git 提交，又容易引发合并冲突。
+- **Sidecar 伴生机制**：
+  1. **单一真相源**：所有个人偏好独立保存在开发者家目录的私有文件：`~/.habit-distiller/habits.md`；
+  2. **全局共享**：只需全局安装一次 Skill，机器上所有项目、所有会话天然可见；
+  3. **动态注入**：AI 会话启动或处理任务时，由 Skill 动态读取并遵守习惯，**对项目代码库 0 侵入、0 篡改**；
+  4. **随装随卸**：随时停用该技能，系统无任何残留垃圾。
 
 ```mermaid
 graph TD
-    subgraph 开源公开仓库 (Public Repo)
-        A["1. 提炼引擎 (core/): 4D 习惯逆向提炼元提示词"]
-        B["2. 推荐预设库 (presets/): 可插拔通用工程规范"]
-        C["3. IDE 适配模板 (adapters/): 11+ 款 AI IDE 纯净插槽"]
-        D["4. 虚构示范案例 (examples/): 通用教学用例"]
+    subgraph 开发者项目代码库 (100% 纯净保护)
+        A["业务代码 / 现有 CLAUDE.md / .cursorrules / GEMINI.md"]
+        A ---|"完全不碰、绝不篡改"| A1["零 Git 污染"]
     end
 
-    subgraph 本地私有隔离 (Local Private, Git-Ignored)
-        E["个人配置 (profiles/ 或 本机全局配置 ~/.gemini/GEMINI.md)"]
+    subgraph 全局伴生技能层 (Sidecar Skill, 全机会话共享)
+        B["全局挂载: npx skills add -g 或 ~/.agents/skills/"]
+        B ---|"运行时动态感知与注入"| B1["habit-distiller"]
     end
 
-    A --> E
-    B --> E
-    E --> C
+    subgraph 独立数据层 (单一真相源)
+        C["~/.habit-distiller/habits.md (用户家目录私有文件)"]
+        B1 -->|"读取与追加提炼习惯"| C
+    end
 ```
 
-1. **引擎核心 (`core/`)**：通用的分析 SOP，通过缺陷溯源、工程倾向、过程反馈、终态形式四个维度归纳习惯。
-2. **模块化预设库 (`presets/`)**：内置开箱即用的通用工程最佳实践，按需自由挂载：
-   - 🛡️ `presets/bug-sweep.md`：连锁确凿缺陷清零协议
-   - 📡 `presets/observable-progress.md`：运行过程微反馈与可观测性协议
-   - 🌐 `presets/bilingual-docs.md`：开源公开项目双语文档规范
-   - 📊 `presets/delivery-dashboard.md`：双轨高可读性交付看板
-3. **IDE 适配模板 (`adapters/`)**：覆盖 11+ 款主流 AI IDE 的标准插槽模板。
-4. **本地私有隔离 (`profiles/`)**：强制通过 `.gitignore` 隔离，开发者个人的私有口令、项目专有指令仅留存在本机。
+### 📦 内置四大工程最佳实践预设 (Presets)
 
-### 💻 全生态 IDE 适配支持表
+新环境初始化时，系统自动挂载以下经过验证的通用工程规范：
+- 🛡️ **缺陷连带清零 (Chain Bug Sweep)**：排查中发掘出的确凿关联 Bug，在确保零回归破坏的前提下一并彻底修复。
+- 📡 **运行过程微反馈 (Observable Progress)**：多步排查、长流程批处理时输出步骤节点反馈，告别黑盒盲跑。
+- 🌐 **开源双语文档规范 (Bilingual README)**：面向 GitHub 公开项目，文档默认提供中英双语，中文置顶对齐。
+- 📊 **双轨高可读交付看板 (Dual-Track Delivery)**：终态汇报以结构化对比表或 IDE 原生面板呈现。
 
-| AI IDE / Agent | 适配规则生效路径 | 适用场景 |
-| :--- | :--- | :--- |
-| **Trae (字节跳动)** | `.trae/rules.md` / `.traerules` | Trae 原生工程规则注入 |
-| **dsh (DeepSeek)** | `DSH.md` / `.dsh/rules.md` | DeepSeek CLI 命令行代理 |
-| **OpenCode** | `OPENCODE.md` / `.opencode/rules.md` | OpenCode 开源协同智能体 |
-| **Pi (Inflection)** | `PI.md` / `.pi/rules.md` | Pi 个人助手与对话终端 |
-| **Claude Code** | `CLAUDE.md` / `~/.claude/CLAUDE.md` | Anthropic Claude Code 官方命令行 |
-| **Antigravity / Gemini** | `~/.gemini/GEMINI.md` / `AGENTS.md` | Google Antigravity & Gemini CLI |
-| **Cursor** | `.cursorrules` / `.cursor/rules/*.mdc` | Cursor 规则库 |
-| **Windsurf (Cascade)** | `.windsurfrules` | Codeium Windsurf 智能助手 |
-| **ZCode** | `.zcode/rules.md` / `ZCODE.md` | ZCode 开发环境 |
-| **Qoder** | `.qoderules` / `.qoder/rules.md` | Qoder 智能辅助系统 |
-| **Codex / Copilot** | `.github/copilot-instructions.md` | GitHub Copilot / OpenAI Codex |
+### 🚀 安装与使用
 
-### 🚀 安装与分发指南
-
-#### 方式一：使用 Vercel `skills` CLI（推荐）
-完全兼容标准 Agent Skill 规范，可直接通过 `skills` 管理工具一键添加：
+#### 1. 一键全局安装（推荐）
+通过 Vercel `skills` CLI 一键全局安装，全机会话立即可用：
 
 ```bash
-# 全局安装 (所有支持 skills 的 Agent 通用)
 npx skills add Ikaros-521/habit-distiller-skills -g
-
-# 安装到当前项目
-npx skills add Ikaros-521/habit-distiller-skills
 ```
 
-#### 方式二：使用本地一键分发脚本
-克隆本仓库后，使用内置脚本快速分发：
-
+或克隆本仓库后使用本地一键挂载脚本：
 ```powershell
-# 同步到全局 Antigravity / Gemini
-.\scripts\sync.ps1 -Target global-gemini
+# Windows
+.\scripts\sync.ps1 -Target install-global
 
-# 同步全量规则到任意具体项目工程 (自动生成 Trae, dsh, Claude, Cursor, ZCode, Qoder 等配置)
-.\scripts\sync.ps1 -Target project -ProjectPath "F:\your-target-project"
+# Linux / macOS
+./scripts/sync.sh install-global
 ```
 
-### 🛠️ 如何触发习惯提炼？
+#### 2. 在对话中随时提炼新习惯
+在任何 AI IDE 会话中，当您觉得 AI 出现返工或您有新的开发偏好时，直接说：
+> “提炼刚才的对话习惯”
 
-当您在使用任何已配置的 AI IDE 时：
-- **触发方式**：在对话中直接发送：
-  > “提炼刚才的对话习惯” 或 “分析我们刚才为什么返工并沉淀规则”
-- AI 会自动调用 `habit-distiller`，审查近几轮历史消息，形成规范条目，并在征得您的同意后直接更新对应规则文件。
+AI 会自动提取无歧义规则，经您确认后**仅保存至 `~/.habit-distiller/habits.md`**，项目文件不受丝毫打扰。
 
 ---
 
 ## 🇺🇸 English Documentation
 
-**Habit Distiller Skills** is a universal framework for developer habit extraction, rule consolidation, and cross-IDE distribution.
+**Habit Distiller Skills** is a zero-intrusion, sidecar habit management and dynamic injection framework designed for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
 
-Grounded in **First Principles** and the **KISS Principle**, it converts friction and rework in AI pair-programming into actionable, unambiguous rules. Built with a **decoupled 4-layer architecture** (Engine, Presets, Adapters, and Local Private Data), it guarantees zero personal data leaks to public repositories while keeping local configurations highly personalized.
+Grounded in **First Principles** and the **KISS Principle**, it eliminates recurring rework and alignment friction in AI pair-programming while **strictly refraining from mutating any project-level rule files** (`CLAUDE.md`, `.cursorrules`, `GEMINI.md`). It keeps your project codebases and team Git histories 100% clean.
 
-### 🏗️ Decoupled Architecture & Privacy First
+### 🌟 Why Zero-Intrusion Sidecar Architecture?
 
-1. **Extraction Engine (`core/`)**: Generic meta-prompts that analyze dialog context across 4 dimensions: anti-patterns, engineering habits, interaction feedback, and delivery formats.
-2. **Modular Presets (`presets/`)**: Battle-tested, plug-and-play engineering standards:
-   - 🛡️ `presets/bug-sweep.md`: Chain Defect Sweep Protocol
-   - 📡 `presets/observable-progress.md`: Observable In-Flight Feedback Protocol
-   - 🌐 `presets/bilingual-docs.md`: Open-Source Bilingual Documentation Protocol
-   - 📊 `presets/delivery-dashboard.md`: Dual-Track Structured Delivery Protocol
-3. **IDE Adapters (`adapters/`)**: Clean slot templates for 11+ mainstream AI IDEs.
-4. **Local Private Isolation (`profiles/`)**: Strictly git-ignored; user-specific custom instructions and sensitive preferences reside solely on the local machine.
+- **The Problem with In-Repo Rules**: Hardcoding personal preferences into a team repository's `CLAUDE.md` or `.cursorrules` pollutes the Git tree and forces personal habits onto other team members.
+- **The Sidecar Solution**:
+  1. **Single Source of Truth**: All distilled habits are stored in your user home directory: `~/.habit-distiller/habits.md`.
+  2. **Global Sharing Across Sessions**: Install once globally, and all conversations across all projects share your habits.
+  3. **Dynamic In-Session Injection**: When active, the agent reads and adheres to `habits.md` on the fly without writing a single byte to the active workspace.
+  4. **Zero Leftover Footprint**: Cleanly disable or uninstall at any time without leaving garbage in project trees.
 
-### 💻 Supported AI IDE Matrix
+### 📦 Pre-Shipped Engineering Presets
 
-| AI IDE / Agent | Configuration File | Target Location / Usage |
-| :--- | :--- | :--- |
-| **Trae (ByteDance)** | `.trae/rules.md` / `.traerules` | Trae native project rules |
-| **dsh (DeepSeek)** | `DSH.md` / `.dsh/rules.md` | DeepSeek CLI agent rules |
-| **OpenCode** | `OPENCODE.md` / `.opencode/rules.md` | OpenCode open agent platform |
-| **Pi (Inflection)** | `PI.md` / `.pi/rules.md` | Pi terminal & CLI rules |
-| **Claude Code** | `CLAUDE.md` / `~/.claude/CLAUDE.md` | Anthropic Claude Code official CLI |
-| **Antigravity / Gemini** | `~/.gemini/GEMINI.md` / `AGENTS.md` | Google Antigravity & Gemini CLI |
-| **Cursor** | `.cursorrules` / `.cursor/rules/*.mdc` | Cursor project guidelines |
-| **Windsurf (Cascade)** | `.windsurfrules` | Codeium Windsurf Cascade rules |
-| **ZCode** | `.zcode/rules.md` / `ZCODE.md` | ZCode agent environment |
-| **Qoder** | `.qoderules` / `.qoder/rules.md` | Qoder assistant guidelines |
-| **Codex / Copilot** | `.github/copilot-instructions.md` | GitHub Copilot / OpenAI Codex |
+- 🛡️ **Chain Bug Sweep**: Automatically resolve confirmed collateral defects safely without regression.
+- 📡 **Observable Progress Feedback**: Emits lightweight in-flight status and step notifications during multi-step runs.
+- 🌐 **Open-Source Bilingual Docs**: Mandates symmetrical bilingual READMEs (Chinese default + English) for open-source GitHub repositories.
+- 📊 **Dual-Track Delivery Dashboard**: Concludes tasks with high-readability Before/After tables and IDE Artifacts.
 
-### 🚀 Installation & Sync
+### 🚀 Installation & Usage
 
-#### Method 1: Via Vercel `skills` CLI (Recommended)
+#### 1. Install Globally (Recommended)
 ```bash
-# Global installation (for any agent supporting skills)
 npx skills add Ikaros-521/habit-distiller-skills -g
-
-# Local installation (current project)
-npx skills add Ikaros-521/habit-distiller-skills
 ```
 
-#### Method 2: Via Local Dispatch Scripts
+Or via local dispatch scripts:
 ```powershell
-# Sync to global Antigravity / Gemini
-.\scripts\sync.ps1 -Target global-gemini
+# Windows
+.\scripts\sync.ps1 -Target install-global
 
-# Dispatch all rules to a specific project workspace
-.\scripts\sync.ps1 -Target project -ProjectPath "F:\your-target-project"
+# Linux / macOS
+./scripts/sync.sh install-global
 ```
+
+#### 2. Trigger Habit Distillation Anytime
+In any conversation with your AI assistant:
+> *"Distill our recent dialogue habits and save them."*
+
+The skill will analyze recent interactions, propose clear rules, and persist them **strictly into `~/.habit-distiller/habits.md`** upon your confirmation.
 
 ---
 
