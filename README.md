@@ -2,10 +2,10 @@
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
-  <img src="https://img.shields.io/badge/Version-2.2.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Version-2.3.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/Vercel%20Skills-Compatible-black.svg" alt="Skills CLI">
-  <img src="https://img.shields.io/badge/Portability-Export%20%26%20Import-purple" alt="Portability">
+  <img src="https://img.shields.io/badge/Resilience-Self--Healing%20%26%20Undo-green" alt="Resilience">
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
@@ -15,45 +15,34 @@
 
 ## 🇨🇳 中文文档
 
-**Habit Distiller Skills (v2.2)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、防碎片化治理与跨机随身漫游系统**。
+**Habit Distiller Skills (v2.3)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、防碎片化全景治理与高弹性自愈系统**。
 
-它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过零侵入伴生机制、意图分级自适应、技术栈隔离以及极简的离线跨机导入导出，让您调教出的最佳 AI 工作流如影随形。
+它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过零侵入伴生机制、意图分级自适应、手改自愈保护以及自然语言一键回退，实现真正人性化、鲁棒且干净的 AI 协同体验。
 
-### 🌟 核心理念与进阶特性
+### 🌟 v2.3 进阶亮点与弹性机制
 
-#### 1. 提炼的是“用户期望模型干活的契约” (User Work Contract)
-- 严禁将单次任务的代码逻辑选择（如“这次用冒泡排序”、“临时跳过单测”）误判为长期习惯；
-- 提炼时必须向用户呈现判定证据与期望干活方式，方便开发者肉眼纠错。
+#### 1. 手动编辑容错与自愈 (Manual Edit Self-Healing)
+- 开发者直接用记事本或 VS Code 手动修改 `habits.md` 时，随手增加的非标准格式内容绝对不会被后续的 AI 提炼覆盖冲刷；
+- AI 下次读取时**智能吸纳并宽容解析**，自动在下一次保存时将其规范化归入合适的领域插槽，100% 保护人工手写成果。
 
-#### 2. 极简离线跨机导出与导入 (Portable Export & Import)
-无需折腾复杂的云端同步服务，秉持 KISS 原则，一行脚本实现跨设备随身迁移：
-```powershell
-# 在旧电脑导出习惯快照 (生成单一 Markdown 文件)
-.\scripts\sync.ps1 -Target export -FilePath ".\my-habits.md"
+#### 2. 自然语言一键撤回 (Natural Language Undo)
+- 对刚才提炼或合并的结果不满意？直接对 AI 说一句：
+  > “撤回刚才的习惯更新” 或 “恢复上一版习惯”
+- AI 自动利用写前镜像 `habits.md.bak` 进行物理原子回退，秒级吃下“后悔药”。
 
-# 在新电脑一键导入 (自动完成物理镜像备份与安全替换)
-.\scripts\sync.ps1 -Target import -FilePath ".\my-habits.md"
-```
+#### 3. 规则冲突并排对比自选 (Side-by-Side Conflict Resolution)
+- 遇到个人习惯与团队规范（`CLAUDE.md`）冲突时，AI 严禁擅自做主，以并排表格清晰列出冲突项，提供：
+  - `[1]` 以项目规范为准；
+  - `[2]` 坚持个人习惯；
+  - `[3]` 智能折中兼容（如：代码英文、对话交付中文）。
 
-#### 3. 敏感数据与特定私网特征审查 (Secret Sanitizer)
-提炼时若检测到 Token、密码、私网 IP 或内网域名 (`*.corp` / `*.internal`)，AI 自动高亮提示并提供选项：
-- `[A] (推荐)` 自动脱敏为通用原则；
-- `[B]` 保留特定值用于局域内部环境。
+#### 4. 长会话低噪音提炼模式 (Low-Noise Compact Diff)
+- 在日常代码编写中触发提炼时，聊天主窗口仅输出 3 行紧凑结论，详细治理 Diff 自动折叠至 `<details>` 面板，绝不刷屏干扰思路。
 
-#### 4. 动态观察期与陈旧健康度巡检 (Observation Horizon & Stale Audit)
-- 对不确定或探索中的新习惯，可标记缩短观察期（如 `[Review: 7d]`）；
-- 当您手动触发提炼时，AI 同步回检已有习惯，主动向您提示：*“发现第 3 条规则已到期/较陈旧，请问是转正还是清理？”*
-
----
-
-### 🗂️ 六维领域插槽 (Domain Taxonomy v2.2)
-
-1. 🧠 **`[DOMAIN: COGNITION]` 认知推演与设计前瞻**：重任务主动多想 1~2 步，推演潜在缺陷与生命周期盲区；
-2. 🛡️ **`[DOMAIN: DEFECT]` 缺陷修复与防线规范**：连带确凿缺陷无破坏一并彻底修复；
-3. 📡 **`[DOMAIN: PROGRESS]` 运行过程与意图自适应**：微任务极速直通，重任务步骤心跳；
-4. 📊 **`[DOMAIN: DELIVERY]` 终态交付展示规范**：双轨看板、Before/After 对照表；
-5. 🌐 **`[DOMAIN: DOCS]` 工程资产与文档规范**：开源公开项目默认中英双语、中文置顶；
-6. 🚫 **`[DOMAIN: FORBIDDEN]` 红线禁忌与反模式防线**：绝对禁止的高危操作阻断。
+#### 5. 弱模型兼容机制：“单一真相源双层视图” (Single Source, Dual View)
+- 针对本地量化小模型（如 7B/1.5B 等弱推理模型），系统避免冗余维护两套数据造成同步脱节，而是采用**动态视图降级**：
+  - `habits.md` 存储结构化的完整主数据；
+  - 遇到轻量模型时动态滤除冗余图表和长解释，仅注入**每条不超 20 字的紧凑 Checklist 原子原语**，确保小模型高遵从率、零幻觉。
 
 ---
 
@@ -68,20 +57,15 @@ npx skills add Ikaros-521/habit-distiller-skills -g
 
 ## 🇺🇸 English Documentation
 
-**Habit Distiller Skills (v2.2)** is a zero-intrusion, portable work-contract guardian and anti-entropy governance system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
+**Habit Distiller Skills (v2.3)** is a zero-intrusion, portable work-contract guardian and resilient governance system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
 
-It grounds itself in a fundamental truth: **We are not modeling the AI's internal habits—we are capturing the developer's explicit expectations of how the AI must execute tasks.**
+### 🌟 New in v2.3: Resilience & Fault Tolerance
 
-### 🌟 Core Capabilities
-
-1. **User-Centric Work Contract**: Captures how *you* expect the agent to work, strictly distinguishing between one-off situational tasks and genuine universal workflows.
-2. **KISS Offline Export & Import**:
-   ```powershell
-   .\scripts\sync.ps1 -Target export -FilePath ".\my-habits.md"
-   .\scripts\sync.ps1 -Target import -FilePath ".\my-habits.md"
-   ```
-3. **Secret & Sensitive Data Sanitizer**: Flags private tokens, internal IPs, and enterprise domain names before persistence.
-4. **Observation Horizon & Decay Audit**: Assigns short review windows (e.g. 7 days) to experimental practices and audits them during manual distillation.
+1. **Manual Edit Fault-Tolerance & Self-Healing**: Hand-written lines in `habits.md` are never discarded. The agent gracefully absorbs and reformats them into standard domain slots on subsequent runs.
+2. **Natural Language Undo**: Revert recent modifications instantly by saying: *"Undo recent habit update"* (restores from `habits.md.bak`).
+3. **Side-by-Side Conflict Resolution**: Compares conflicting rules in an interactive table (`Project Priority`, `Personal Priority`, or `Smart Compromise`).
+4. **Low-Noise Compact Mode**: Keeps chat clean during long coding workflows by folding verbose diff reports into collapsible sections.
+5. **Small Model Adaptation (Single Source, Dual View)**: Dynamically projects rich markdown into lightweight 20-word checklists for resource-constrained 7B/1.5B local models.
 
 ---
 

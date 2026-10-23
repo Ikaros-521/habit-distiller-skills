@@ -1,79 +1,88 @@
-# Habit Governor: 习惯生命周期治理与全景防熵增引擎 (v2.1)
+# Habit Governor: 习惯生命周期治理与全景防熵增引擎 (v2.3)
 
-本文档定义了 Habit Distiller 如何在提炼与运行个人习惯时进行**技术栈作用域隔离、自适应意图分级、多 Agent 并发原子保护、提炼时陈旧习惯巡检与冲突智能仲裁**的标准作业程序（SOP）。
+本文档定义了 Habit Distiller 如何在提炼与运行个人习惯时进行**手改自愈保护、自然语言一键撤回、长会话低噪音输出、冲突列出对比自选以及弱模型紧凑视图自适应**的标准作业程序（SOP）。
 
 ---
 
-## 1. 核心治理机制升级 (v2.1 Architecture)
+## 1. 核心治理机制升级 (v2.3 Architecture)
 
 ```mermaid
 graph TD
-    subgraph 运行态感知 (Runtime Phase)
-        A1["1. 意图分级自适应 (Adaptive Depth: Fast-Path vs Deep-Path)"]
-        A2["2. 技术栈作用域过滤 (Tech-Stack Scoping: [Scope: ...])"]
-        A3["3. 规则冲突智能仲裁 (Conflict Arbitration)"]
+    subgraph 容错与弹性机制 (Resilience & Recovery)
+        A1["1. 手动编辑容错与自愈 (Manual Edit Self-Healing)"]
+        A2["2. 自然语言一键撤回 (Natural Language Undo)"]
+        A3["3. 规则冲突对比自选 (Side-by-Side Conflict Resolution)"]
     end
 
-    subgraph 提炼与演进态 (Evolution Phase)
-        B1["4. 提炼时旧习惯健康度巡检 (Habit Health & Stale Audit)"]
-        B2["5. 约束保真合并与红线防线 (Constraint Preservation & Forbidden)"]
-        B3["6. 原子重命名并发防撕裂 (Atomic Temp-Rename)"]
+    subgraph 效能与交互机制 (Efficiency & Presentation)
+        B1["4. 长会话低噪音提炼 (Low-Noise Compact Diff)"]
+        B2["5. 单一数据双层视图 (Single Source Dual-View for Small Models)"]
     end
 
     A1 & A2 & A3 --> SingleSource["单一真相源 (~/.habit-distiller/habits.md)"]
-    B1 & B2 & B3 --> SingleSource
+    B1 & B2 --> SingleSource
 ```
 
 ---
 
 ## 2. 核心机制细则
 
-### 机制一：意图分级自适应与极速直通 (Adaptive Execution Depth)
-- **第一性原理**：“针对简单查询快速给出准确结果”本身就是一种高价值习惯。无需开发者记忆死板的口令，AI 应根据任务实际场景**自主理解并分级规划**执行深度：
-  1. **极速直通通道 (Fast-Path Mode)**：
-     - **触发场景**：单行命令查询、代码片段速查、纯概念释义、轻量文本修改等微任务；
-     - **执行策略**：直接返回精准、干净的核心答案，自动豁免步骤反馈心跳、不强制出具双轨看板、不作冗长的前瞻发散，实现秒级响应。
-  2. **深度防线通道 (Deep-Path Mode)**：
-     - **触发场景**：多文件修改、复杂缺陷排查、系统重构、发布打包、新架构设计；
-     - **执行策略**：全量激活前瞻推演、步骤可观测微反馈、缺陷连带清零与双轨结构化看板。
+### 机制一：手动编辑容错与自愈 (Manual Edit Self-Healing)
+- **痛点**：开发者用记事本或编辑器手工修改 `habits.md` 时，随手增加的非标准格式行（如缺失标题、漏掉 domain 标签），极易被后续的自动重写抹除。
+- **自愈铁律**：
+  1. **宽容读取 (Permissive Parsing)**：AI 读取 `habits.md` 时，若发现不符合标准 Markdown 层级的手写内容，一律判定为“用户手工有效项”，**严禁丢弃**；
+  2. **智能吸纳 (Graceful Assimilation)**：在下一次通过对话提炼重写文件时，AI 自动根据手写语义将其归纳至对应的六大 Domain 插槽中，规范化格式的同时 **100% 保护手写成果**；
+  3. **显式反馈**：保存后提示：*“ℹ️ 检测到您手工修改的 X 条内容，已自动规范化融入对应领域。”*
 
 ---
 
-### 机制二：技术栈作用域隔离 (Tech-Stack Scoping)
-- **痛点**：避免 Python 提炼的习惯（如加 Type Hints）无脑污染 C++ 嵌入式工程或前端 Vue 项目。
-- **规范**：规则标题支持标注适用范围 `[Scope: <tags>]`：
-  - `[Scope: global]`（默认）：所有技术栈、所有项目通用（如过程反馈、双轨看板）；
-  - `[Scope: python]`：仅当项目包含 `.py`、`requirements.txt` 或当前正在操作 Python 代码时生效；
-  - `[Scope: frontend]`：仅当涉及 HTML/CSS/JS/TS/Vue/React 时生效。
-- **执行规则**：AI 在读取习惯库时，自动根据当前工程特征进行**静默作用域过滤**，杜绝语境中毒。
+### 机制二：自然语言一键撤回 (One-Click Undo Protocol)
+- **触发口令**：用户发送“撤回刚才的习惯更新”、“撤销提炼”、“恢复上一版习惯”或“undo habit”。
+- **执行逻辑**：
+  1. AI 检查是否存在 `~/.habit-distiller/habits.md.bak`；
+  2. 若存在，直接将 `.bak` 镜像物理原子替换回 `habits.md`；
+  3. 立即向用户确认：
+     > ✅ *“已为您撤销最近一次的习惯提炼，单一真相源已秒级回滚至上一版镜像状态。”*
 
 ---
 
-### 机制三：提炼时旧习惯健康度巡检 (Habit Health & Stale Audit)
-- **交互创新**：当用户手动触发“提炼对话习惯”时，AI 不仅做“增量审查”，同时对已有习惯进行**健康度回检与优化体检**。
-- **输出呈现**：在提交用户的提炼报告中单列【现有习惯体检建议】：
+### 机制三：规则冲突并排对比自选 (Side-by-Side Conflict Resolution)
+- **场景**：当导入外部习惯包、团队规则（如 `CLAUDE.md`）与个人习惯互斥时。
+- **交互规范**：AI 严禁擅自覆盖，必须以**并排对比表格**形式呈现差异，供用户自选：
   ```markdown
-  ### 📊 现有习惯健康度巡检与优化建议
-  - 💡 **建议优化**：发现第 2 条规则与近期高频出现的“TS 语法”可以合并，建议升维提炼；
-  - ⏳ **疑似陈旧**：第 5 条规则针对的框架特性已升级，是否顺便将其归档？
+  ⚠️ 检测到规则互斥冲突：
+
+  | 冲突维度 | 规范 A (例如：团队规范 CLAUDE.md) | 规范 B (例如：个人习惯 habits.md) |
+  | :--- | :--- | :--- |
+  | **代码注释语言** | 强制要求英文注释 | 默认中文沟通与注释 |
+
+  请选择您期望的兼容策略（回复数字）：
+  [1] 以项目/规范 A 为准（针对本项目临时或持久让步）
+  [2] 以个人/规范 B 为准（坚持个人既有习惯）
+  [3] 智能折中兼容（例如：代码与注释英文，任务交流与交付总结中文）
   ```
 
 ---
 
-### 机制四：原子临时写入与并发防撕裂 (Atomic Temp-Rename)
-- **痛点**：多窗口、多 Agent 后台并发修改 `habits.md` 时可能发生写冲突或文件损毁。
-- **防撕裂协议**：
-  1. 写入时先落盘至同目录下的临时文件：`habits.md.tmp`；
-  2. 写入完成且校验非空后，通过操作系统级原子操作（Atomic Rename/Replace）覆盖正式文件；
-  3. 彻底避免文件截断或部分写入（Torn Write）。
+### 机制四：长会话低噪音提炼模式 (Low-Noise Compact Distillation)
+- **规范**：在长篇代码调试对话中，提炼确认后的回复严禁铺陈满屏 Diff 干扰注意力。
+- **输出格式**：聊天主界面仅输出 3 行紧凑结论，详细报表自动折叠收起：
+  ```markdown
+  ✅ 已完成协同习惯提炼并落盘至 `~/.habit-distiller/habits.md`
+  - 核心变更：[DOMAIN: ...] 新增/更新 [规则名称]
+  - 容灾状态：写前原子镜像 habits.md.bak 已同步就绪
+
+  <details>
+  <summary>🔍 点击展开查看本次治理 Diff 与体检明细</summary>
+
+  [此处折叠渲染完整的四态比对审计表与健康度巡检结果]
+  </details>
+  ```
 
 ---
 
-## 3. 六维领域体系 (Domain Taxonomy v2.1)
-
-1. 🧠 **`[DOMAIN: COGNITION]` 认知推演与设计前瞻**（重任务主动多想 1~2 步，推演盲区）
-2. 🛡️ **`[DOMAIN: DEFECT]` 缺陷修复与防线规范**（连锁确凿缺陷清零）
-3. 📡 **`[DOMAIN: PROGRESS]` 运行过程与意图自适应**（微任务极速直出，重任务步骤心跳）
-4. 📊 **`[DOMAIN: DELIVERY]` 终态交付展示规范**（双轨结构化看板）
-5. 🌐 **`[DOMAIN: DOCS]` 工程资产与文档规范**（开源项目中英双语）
-6. 🚫 **`[DOMAIN: FORBIDDEN]` 红线禁忌与反模式防线**（绝对禁止的反模式）
+### 机制五：弱模型/小模型兼容与“单一真相源双层视图”
+（详细技术原理解析见下文系统说明）
+- 采用 **“单一存储、按需精简渲染 (Single Source, Dual-View Rendering)”**：
+  - 物理文件始终保持标准富文本格式；
+  - 面向指令遵从能力较弱的小模型（如本地 7B/1.5B 模型），在调用 Skill 时前置通过正则滤除 Mermaid 图表、冗余案例与背景说明，仅动态注入**纯原语原子清单（每条不超过 20 字的 Checklists）**，确保小模型不出现注意力分散或幻觉。
