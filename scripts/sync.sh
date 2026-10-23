@@ -8,7 +8,7 @@ HABITS_DIR="$HOME/.habit-distiller"
 HABITS_FILE="$HABITS_DIR/habits.md"
 PROFILES_DIR="$HABITS_DIR/profiles"
 
-echo "=== Habit Distiller 跨机同步与管理工具 (v2.5) ==="
+echo "=== Habit Distiller 跨机同步与管理工具 (v2.6) ==="
 
 case "$TARGET" in
     "install-global")
@@ -46,6 +46,18 @@ case "$TARGET" in
         fi
         ;;
 
+    "init-workspace")
+        PROFILE_NAME=${PARAM_TWO:-"default"}
+        echo "profile: $PROFILE_NAME" > ./.habit-profile
+        echo "SUCCESS: 已创建工作区档案指针: .habit-profile ($PROFILE_NAME)"
+        if [ -d "./.git/info" ]; then
+            if ! grep -q ".habit-profile" ./.git/info/exclude 2>/dev/null; then
+                echo -e "\n# Zero-pollution habit profile\n.habit-profile" >> ./.git/info/exclude
+                echo "SUCCESS: 已将 .habit-profile 安全加入 .git/info/exclude (0% 仓库污染)"
+            fi
+        fi
+        ;;
+
     "switch-profile")
         PROFILE_NAME="$PARAM_TWO"
         if [ -z "$PROFILE_NAME" ]; then
@@ -63,6 +75,7 @@ case "$TARGET" in
         fi
         cp "$TARGET_FILE" "$HABITS_FILE"
         echo "SUCCESS: 已成功无缝切换至档案 [$PROFILE_NAME]"
+        echo "TIP: 若其他 IDE 窗口正在运行，建议新开对话以加载最新契约。"
         ;;
 
     "list-profiles")
@@ -113,6 +126,6 @@ case "$TARGET" in
         ;;
 
     *)
-        echo "未知目标: $TARGET. 支持: install-global, switch-profile, list-profiles, save-profile, export, import"
+        echo "未知目标: $TARGET. 支持: install-global, init-workspace, switch-profile, list-profiles, save-profile, export, import"
         ;;
 esac

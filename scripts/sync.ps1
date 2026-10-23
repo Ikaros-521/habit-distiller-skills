@@ -10,7 +10,7 @@ $HabitsConfigDir = "$HOME\.habit-distiller"
 $HabitsConfigFile = "$HabitsConfigDir\habits.md"
 $ProfilesDir = "$HabitsConfigDir\profiles"
 
-Write-Host "=== Habit Distiller Portable Sync & Management Tool (v2.5) ===" -ForegroundColor Cyan
+Write-Host "=== Habit Distiller Portable Sync & Management Tool (v2.6) ===" -ForegroundColor Cyan
 
 switch ($Target.ToLower()) {
     "install-global" {
@@ -63,6 +63,24 @@ switch ($Target.ToLower()) {
         Write-Host "SUCCESS: Global setup completed successfully!" -ForegroundColor Green
     }
 
+    "init-workspace" {
+        $SelectedProfile = if ($ProfileName) { $ProfileName } else { "default" }
+        $WorkspaceConfigFile = ".\.habit-profile"
+        $ConfigContent = "profile: $SelectedProfile`n"
+        Set-Content -Path $WorkspaceConfigFile -Value $ConfigContent -Encoding UTF8 -Force
+        Write-Host "SUCCESS: Created workspace profile pointer: $WorkspaceConfigFile (Profile: $SelectedProfile)" -ForegroundColor Green
+
+        # Zero pollution: register into .git/info/exclude
+        if (Test-Path ".\.git\info") {
+            $ExcludeFile = ".\.git\info\exclude"
+            $CurrentExclude = if (Test-Path $ExcludeFile) { Get-Content $ExcludeFile -Raw } else { "" }
+            if ($CurrentExclude -notmatch "\.habit-profile") {
+                Add-Content -Path $ExcludeFile -Value "`n# Zero-pollution habit profile`n.habit-profile`n" -Force
+                Write-Host "SUCCESS: Safely added .habit-profile to .git/info/exclude (0% repo pollution!)" -ForegroundColor Green
+            }
+        }
+    }
+
     "switch-profile" {
         if (-not $ProfileName) {
             Write-Error "Please specify a profile name: .\scripts\sync.ps1 -Target switch-profile -ProfileName <name>"
@@ -79,6 +97,7 @@ switch ($Target.ToLower()) {
         }
         Copy-Item $TargetFile $HabitsConfigFile -Force
         Write-Host "SUCCESS: Switched active habits to profile: [$ProfileName]" -ForegroundColor Green
+        Write-Host "TIP: If other IDE windows (Cursor/Trae) are running, start a new turn to load updated habits." -ForegroundColor Yellow
     }
 
     "list-profiles" {
@@ -137,6 +156,6 @@ switch ($Target.ToLower()) {
     }
 
     Default {
-        Write-Warning "Unknown target: $Target. Available: install-global, switch-profile, list-profiles, save-profile, export, import"
+        Write-Warning "Unknown target: $Target. Available: install-global, init-workspace, switch-profile, list-profiles, save-profile, export, import"
     }
 }
