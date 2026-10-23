@@ -2,10 +2,10 @@
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
-  <img src="https://img.shields.io/badge/Version-2.4.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Version-2.5.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/Multi--Profile-Supported-purple" alt="Multi Profile">
   <img src="https://img.shields.io/badge/Vercel%20Skills-Compatible-black.svg" alt="Skills CLI">
-  <img src="https://img.shields.io/badge/Scorecard%20Command-Supported-purple" alt="Scorecard Command">
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
@@ -15,34 +15,46 @@
 
 ## 🇨🇳 中文文档
 
-**Habit Distiller Skills (v2.4)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、防碎片化全景治理与高弹性自愈系统**。
+**Habit Distiller Skills (v2.5)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、多档案场景切换、防碎片化全景治理与高弹性自愈系统**。
 
-它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过零侵入伴生机制、意图分级自适应、单域 1+3 聚类浓缩、手改自愈保护以及一键清单可视化查询，实现真正透明、可控且纯净的 AI 协同体验。
+它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过零侵入伴生机制、场景化档案无缝切换、定向习惯注销、意图分级自适应、单域 1+3 聚类浓缩、主观虚词反模糊转译与手改自愈保护，实现真正透明、可控且纯净的 AI 协同体验。
 
-### 🌟 v2.4 进阶亮点与控制力设计
+### 🌟 v2.5 进阶亮点与控制力设计
 
-#### 1. 一键习惯清单查询与计分卡 (Habit Scorecard)
+#### 1. 多套场景习惯档案无缝切换 (Multi-Profile Switcher)
+- 开发者在不同场景下的诉求天然不同：公司商业项目需要企业合规与严密审查，个人开源项目需要极度轻量与中英双语文档。
+- 系统支持在 `~/.habit-distiller/profiles/` 下维护多套独立档案（如 `work`、`open-source`、`default`）：
+  > “切换习惯 work” 或 “使用开源档案”
+- AI 自动保存当前更改，物理原子切换底层真相源，全 IDE 即刻生效。
+
+#### 2. 单条习惯定向精准注销 (Targeted Habit Deletion)
+- 补齐 CRUD 闭环！除整体一键撤回外，支持针对单条特定规则的靶向拔除：
+  > “删除习惯 开源双语文档” 或 “注销第 3 条习惯”
+- AI 自动生成写前镜像 `habits.md.bak`，精准剔除目标条目，其余规则完好无损。
+
+#### 3. 主观虚词反模糊转译与强制逃生 (Disambiguation & Force-Write)
+- 遇到开发者输入抽象主观词（如“写得更有艺术感”、“逻辑更严谨一点”）：
+  - **建议转译**：AI 基于第一性原理转译为具体工程指标向用户反问澄清（如“防御性判空与边界兜底”）；
+  - **强制逃生**：若开发者明确回复“强制写入”或坚持原话，AI 立即尊重开发者意愿原样沉淀，绝不反复辩论。
+
+#### 4. 知行背离智能自愈与冲突仲裁 (Drift & Conflict Arbitration)
+- 当书面习惯写着“必须补单测”，但开发者连续多次要求“赶进度直接出业务代码”时：
+- AI 识别冲突并主动友好探问：
+  - [1] **仅当前会话特例放行**（保留书面契约，本次临时豁免）；
+  - [2] **同步修改全局书面契约**；
+  - [3] **注销该书面习惯**。
+
+#### 5. 开源精选双语档案开箱即用 (Curated Open-Source Profile)
+- 仓库内直接预置开源精选档案 [`profiles/open-source.md`](profiles/open-source.md)，包含经实战检验的 6 大领域黄金协同契约（认知推演、缺陷连带清零、意图自适应、双轨看板、中英双语 README 置顶、高危操作阻断）。
+
+#### 6. 一键习惯清单查询与计分卡 (Habit Scorecard)
 - 随时在对话中发送：
   > “查看我的习惯” 或 “查看习惯清单”
-- AI 立即以 1 页精炼的**可视化计分卡表格**直接渲染当前六大领域的生效规则、作用域与执行状态，一目了然。
-
-#### 2. 缺失工具权限主动索权 (Tool Permission Prompting)
-- 当遵从习惯（如运行单测、构建验证）需要终端环境，但当前窗口未授予终端工具权限时，AI 严禁隐式猜测或假装调用，必须**直接向开发者主动索权**，或提示在宿主机本地终端执行。
-
-#### 3. 单域 1+3 聚类浓缩协议 (Anti-Bloat Synthesis)
-- 针对单个领域内部无休止追加子项导致的“局部肥胖”，建立熔断机制：每个领域**强制收敛为“1 条核心行动纲领 + 最多 3 条边界指标”**，超出时自动触发聚类浓缩。
-
-#### 4. 结构化输出契约防漏自审 (Schema-Enforced Audit)
-- 习惯履约自审被直接物理锚定在深度任务交付看板的必填单元格内（`| **习惯契约核验** | 🛡️ [连带清零/反馈贯穿] |`），模型填充表格时强制触发核验注意力，彻底杜绝遗漏。
-
-#### 5. 自然语言一键撤回 (Natural Language Undo)
-- 对刚提炼或合并的结果不满意？直接发送：
-  > “撤回刚才的习惯更新” 或 “恢复上一版习惯”
-- AI 自动利用写前镜像 `habits.md.bak` 进行物理原子回退，秒级恢复上一版。
+- AI 立即以 1 页精炼的**可视化计分卡表格**直接渲染当前六大领域的生效规则、作用域与执行状态。
 
 ---
 
-### 🗂️ 六维领域插槽 (Domain Taxonomy v2.4)
+### 🗂️ 六维领域插槽 (Domain Taxonomy v2.5)
 
 1. 🧠 **`[DOMAIN: COGNITION]` 认知推演与设计前瞻**：重任务主动多想 1~2 步，推演潜在缺陷与生命周期盲区；
 2. 🛡️ **`[DOMAIN: DEFECT]` 缺陷修复与防线规范**：连带确凿缺陷无破坏一并彻底修复；
@@ -53,26 +65,48 @@
 
 ---
 
-### 🚀 安装与分发
+### 🚀 安装、分发与跨机管理
+
+#### 全局安装 (所有支持 skills 的 AI IDE 通用)
+```bash
+npx skills add Ikaros-521/habit-distiller-skills -g
+```
+
+#### 本地跨机脚本管理
+```powershell
+# Windows PowerShell
+.\scripts\sync.ps1 -Target install-global                    # 全局安装与挂载
+.\scripts\sync.ps1 -Target switch-profile -ProfileName work   # 切换至 work 工作档案
+.\scripts\sync.ps1 -Target list-profiles                     # 列出本机所有可用档案
+.\scripts\sync.ps1 -Target export -FilePath .\my-habits.md   # 导出当前习惯
+.\scripts\sync.ps1 -Target import -FilePath .\my-habits.md   # 导入习惯
+```
 
 ```bash
-# 全局挂载 (所有支持 skills 的 AI IDE 通用)
-npx skills add Ikaros-521/habit-distiller-skills -g
+# macOS / Linux Bash
+./scripts/sync.sh install-global                             # 全局安装与挂载
+./scripts/sync.sh switch-profile open-source                 # 切换至开源档案
+./scripts/sync.sh list-profiles                              # 列出本机档案
+./scripts/sync.sh export ./my-habits.md                      # 导出习惯
+./scripts/sync.sh import ./my-habits.md                      # 导入习惯
 ```
 
 ---
 
 ## 🇺🇸 English Documentation
 
-**Habit Distiller Skills (v2.4)** is a zero-intrusion, portable work-contract guardian and resilient governance system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
+**Habit Distiller Skills (v2.5)** is a zero-intrusion, portable work-contract guardian, multi-profile switcher, and resilient governance system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
 
-### 🌟 New in v2.4: Transparency & Anti-Bloat Synthesis
+It firmly establishes a foundational truth: **the system extracts not the model's ego or habits, but the explicit contract for how the developer expects the AI to work**. Through zero-intrusion sidecar storage, seamless multi-profile switching, targeted habit deletion, intent-adaptive depth, single-domain 1+3 synthesis, actionability disambiguation, and permissive self-healing, it delivers a transparent, controllable, and pristine AI pair-programming experience.
 
-1. **Instant Habit Scorecard (`查看习惯清单` / `list habits`)**: Instantly inspect active rules, scopes, and domains in a clean, one-page status table.
-2. **Missing Tool Permission Prompting**: When terminal tools are required to verify compliance but unpermitted, the agent explicitly prompts for authorization or provides the exact local terminal command.
-3. **Single-Domain 1+3 Anti-Bloat Synthesis**: Restricts each domain to *1 Core Directive + up to 3 Boundary Criteria*, preventing unbounded bullet-point sprawl.
-4. **Schema-Enforced Self-Audit**: Anchors compliance verification directly into required summary table cells (`| Habit Contract Audit | Verified |`).
-5. **Natural Language Undo**: Instantly rollback via *"Undo recent habit update"*.
+### 🌟 New in v2.5: Multi-Profile & Granular Lifecycle Control
+
+1. **Multi-Profile Switcher (`切换习惯 [名称]` / `switch-profile`)**: Maintain separate habit profiles (e.g. `work`, `open-source`, `default`) under `~/.habit-distiller/profiles/` and swap active contracts seamlessly across all AI IDE sessions.
+2. **Targeted Habit Deletion (`删除习惯 [名称]` / targeted deletion)**: Precise removal of individual obsolete rules with pre-write mirror backups without corrupting surrounding rules.
+3. **Actionability Disambiguation & Force-Write Escape**: Subjective/vague terms are proactively translated into actionable engineering criteria; if the user insists on "force write", their raw words are honored without debate.
+4. **Habit-Action Drift & Conflict Arbitration**: Detects friction between written contracts and real-time instructions, prompting the user to pick: temporary session pass, contract update, or rule deletion.
+5. **Curated Open-Source Bilingual Profile**: Ready-to-use template [`profiles/open-source.md`](profiles/open-source.md) enforcing bilingual READMEs (Chinese default on top), chain bug sweeps, and proactive cognition.
+6. **Instant Habit Scorecard (`查看习惯清单` / `list habits`)**: One-page status table visualizing all active domain directives and scopes.
 
 ---
 

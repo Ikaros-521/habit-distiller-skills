@@ -1,13 +1,16 @@
 param(
     [string]$Target = "install-global",
-    [string]$FilePath = ""
+    [string]$FilePath = "",
+    [string]$ProfileName = ""
 )
 
 $RepoRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $SkillSource = Join-Path $RepoRoot "skills\habit-distiller"
-$HabitsConfigFile = "$HOME\.habit-distiller\habits.md"
+$HabitsConfigDir = "$HOME\.habit-distiller"
+$HabitsConfigFile = "$HabitsConfigDir\habits.md"
+$ProfilesDir = "$HabitsConfigDir\profiles"
 
-Write-Host "=== Habit Distiller Portable Sync & Management Tool ===" -ForegroundColor Cyan
+Write-Host "=== Habit Distiller Portable Sync & Management Tool (v2.5) ===" -ForegroundColor Cyan
 
 switch ($Target.ToLower()) {
     "install-global" {
@@ -27,18 +30,83 @@ switch ($Target.ToLower()) {
             Write-Host "SUCCESS: Mounted to Claude Code global skill directory: $ClaudeSkillDest" -ForegroundColor Green
         }
 
-        $HabitsConfigDir = "$HOME\.habit-distiller"
         if (-not (Test-Path $HabitsConfigDir)) {
             New-Item -ItemType Directory -Path $HabitsConfigDir -Force | Out-Null
         }
+        if (-not (Test-Path $ProfilesDir)) {
+            New-Item -ItemType Directory -Path $ProfilesDir -Force | Out-Null
+        }
+
+        # Sync public curated profiles to user directory
+        $RepoProfiles = Join-Path $RepoRoot "profiles"
+        if (Test-Path $RepoProfiles) {
+            Get-ChildItem -Path $RepoProfiles -Filter "*.md" | ForEach-Object {
+                $DestProfile = Join-Path $ProfilesDir $_.Name
+                if (-not (Test-Path $DestProfile)) {
+                    Copy-Item $_.FullName $DestProfile -Force
+                    Write-Host "INFO: Initialized profile: $($_.Name)" -ForegroundColor Cyan
+                }
+            }
+        }
+
         if (-not (Test-Path $HabitsConfigFile)) {
-            Write-Host "Initializing default habits.md from presets..." -ForegroundColor Yellow
-            Copy-Item (Join-Path $RepoRoot "presets\proactive-exploration.md") $HabitsConfigFile -Force
+            Write-Host "Initializing default habits.md from open-source preset..." -ForegroundColor Yellow
+            $DefaultSource = Join-Path $RepoRoot "profiles\open-source.md"
+            if (-not (Test-Path $DefaultSource)) {
+                $DefaultSource = Join-Path $RepoRoot "presets\proactive-exploration.md"
+            }
+            Copy-Item $DefaultSource $HabitsConfigFile -Force
             Write-Host "SUCCESS: Initialized profile: $HabitsConfigFile" -ForegroundColor Green
         } else {
             Write-Host "INFO: Existing profile preserved: $HabitsConfigFile" -ForegroundColor Cyan
         }
         Write-Host "SUCCESS: Global setup completed successfully!" -ForegroundColor Green
+    }
+
+    "switch-profile" {
+        if (-not $ProfileName) {
+            Write-Error "Please specify a profile name: .\scripts\sync.ps1 -Target switch-profile -ProfileName <name>"
+            return
+        }
+        $TargetFile = Join-Path $ProfilesDir "$ProfileName.md"
+        if (-not (Test-Path $TargetFile)) {
+            Write-Error "Profile not found: $TargetFile. Use -Target list-profiles to inspect available profiles."
+            return
+        }
+        if (Test-Path $HabitsConfigFile) {
+            Copy-Item $HabitsConfigFile "$HabitsConfigFile.bak" -Force
+            Write-Host "INFO: Created atomic backup at: $HabitsConfigFile.bak" -ForegroundColor Gray
+        }
+        Copy-Item $TargetFile $HabitsConfigFile -Force
+        Write-Host "SUCCESS: Switched active habits to profile: [$ProfileName]" -ForegroundColor Green
+    }
+
+    "list-profiles" {
+        if (-not (Test-Path $ProfilesDir)) {
+            Write-Warning "Profiles directory does not exist: $ProfilesDir"
+            return
+        }
+        Write-Host "--- Available Profiles in $ProfilesDir ---" -ForegroundColor Yellow
+        Get-ChildItem -Path $ProfilesDir -Filter "*.md" | ForEach-Object {
+            Write-Host " - $($_.BaseName)" -ForegroundColor Cyan
+        }
+    }
+
+    "save-profile" {
+        if (-not $ProfileName) {
+            Write-Error "Please specify a profile name: .\scripts\sync.ps1 -Target save-profile -ProfileName <name>"
+            return
+        }
+        if (-not (Test-Path $HabitsConfigFile)) {
+            Write-Error "Active habits file not found: $HabitsConfigFile"
+            return
+        }
+        if (-not (Test-Path $ProfilesDir)) {
+            New-Item -ItemType Directory -Path $ProfilesDir -Force | Out-Null
+        }
+        $TargetFile = Join-Path $ProfilesDir "$ProfileName.md"
+        Copy-Item $HabitsConfigFile $TargetFile -Force
+        Write-Host "SUCCESS: Saved current active habits as profile: [$ProfileName] -> $TargetFile" -ForegroundColor Green
     }
 
     "export" {
@@ -57,7 +125,6 @@ switch ($Target.ToLower()) {
             Write-Error "Please provide a valid file path to import, e.g.: .\scripts\sync.ps1 -Target import -FilePath .\my-habits-export.md"
             return
         }
-        $HabitsConfigDir = "$HOME\.habit-distiller"
         if (-not (Test-Path $HabitsConfigDir)) {
             New-Item -ItemType Directory -Path $HabitsConfigDir -Force | Out-Null
         }
@@ -70,6 +137,6 @@ switch ($Target.ToLower()) {
     }
 
     Default {
-        Write-Warning "Unknown target: $Target. Available: install-global, export, import"
+        Write-Warning "Unknown target: $Target. Available: install-global, switch-profile, list-profiles, save-profile, export, import"
     }
 }

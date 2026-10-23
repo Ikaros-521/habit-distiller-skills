@@ -1,8 +1,12 @@
-# Local & Personal Habit Profiles (Do NOT commit to Git)
-profiles/
-my-habits/
+# Local & Private Habit Profiles (Do NOT commit personal habits to Git)
+profiles/my-*
+profiles/*.local.*
 *.local.*
 *.backup
+
+# Keep curated public profiles in repo
+!profiles/open-source.md
+!profiles/default.md
 
 # Environment & Temp
 .env
