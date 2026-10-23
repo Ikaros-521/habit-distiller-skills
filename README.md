@@ -5,11 +5,12 @@
   <img src="https://img.shields.io/badge/Version-2.9.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/Edition-Full%20Featured-purple" alt="Full Featured">
   <img src="https://img.shields.io/badge/Lightweight%20Branch-Available-orange" alt="Lightweight">
+  <img src="https://img.shields.io/badge/LLMs.txt-Supported-blue" alt="llms.txt">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
-[**简体中文**](#-中文文档) | [**English**](#-english-documentation) | [🌿 **轻量精简版 (Lightweight Branch)**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight)
+[**简体中文**](#-中文文档) | [**English**](#-english-documentation) | [🌿 **轻量精简版 (Lightweight Branch)**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight) | [📄 **llms.txt**](llms.txt)
 
 > 💡 **版本选装指引**：
 > - **主线版本 (`main`)**：**全功能企业级治理版**（大纲骨架自愈、多档案无缝切换、事实证据链核验、冲突统一揭示、工作区零污染层叠）；
@@ -22,6 +23,18 @@
 **Habit Distiller Skills (v2.9)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、大纲骨架自愈、回滚透明确认、零工具调用延迟与事实证据核验系统**。
 
 它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过大纲骨架无损自愈、回滚明确确认、冲突统一透明化展示、内存缓存零读盘延迟、动态语言作用域自适应与手改自愈保护，实现真正透明、可控且纯净的 AI 协同体验。
+
+### 📊 业界主流方案对比 (Ecosystem Comparison)
+
+| 对比维度 | Habit Distiller Skills | 项目规则文件 (.cursorrules / CLAUDE.md) | 外部记忆库 (Mem0 / Letta) | 原生自定义指令 (Custom Instructions) |
+| :--- | :--- | :--- | :--- | :--- |
+| **代码库侵入度** | 🟢 **0% 污染** (存本机 `~/.habit-distiller`) | 🔴 **严重污染** (每个项目都产生无谓文件) | 🟡 **中等** (需配置外部数据库/服务器) | 🟢 **0% 污染** |
+| **跨 AI IDE 互通性** | 🟢 **全平台通用** (Claude Code, Trae, Antigravity, Cursor) | 🔴 **厂商私有绑定** (各家语法互不兼容) | 🟡 **需专有 SDK/API 绑定** | 🔴 **仅限单家 Web 界面** |
+| **维护与依赖开销** | 🟢 **极简本地 Markdown (KISS 原则)** | 🔴 **手工反复维护** | 🔴 **重度依赖** (Python、向量库、外部密钥) | 🔴 **静态文本，无法对话自动演进** |
+| **对话逆向提炼** | 🟢 **支持自然语言提炼、反问与人本确认** | 🔴 **不支持** | 🟢 **支持** | 🔴 **不支持** |
+| **容灾与版本撤回** | 🟢 **写前自动备份，随时透明撤回** | 🔴 **需借助 git 回滚** | 🟡 **黑盒向量状态难以审计** | 🔴 **无版本回滚能力** |
+
+---
 
 ### 🌟 v2.9 进阶亮点与控制力设计
 
@@ -104,6 +117,16 @@ npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
 > 💡 **Edition Guide**:
 > - **Main Edition (`main`)**: **Full-Featured Governance Edition** (lossless heading self-healing, multi-profile switcher, fact-based compliance proof, unified conflict resolution, workspace cascading).
 > - **Lightweight Edition (`lightweight`)**: **KISS Minimalist Edition** (35-line lean definition, strictly focused on 3-step habit distillation). Visit the 👉 [**lightweight branch**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight).
+
+### 📊 Ecosystem Comparison
+
+| Dimension | Habit Distiller Skills | Project Rules (.cursorrules / CLAUDE.md) | Vector Memory (Mem0 / Letta) | Custom Instructions (Web UI) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Codebase Pollution** | 🟢 **0% Clean** (`~/.habit-distiller`) | 🔴 **High** (pollutes git history) | 🟡 **Medium** (requires external DB) | 🟢 **0% Clean** |
+| **Cross-IDE Portability** | 🟢 **Universal** (Claude Code, Trae, Antigravity, Cursor) | 🔴 **Vendor-locked** | 🟡 **Requires SDK integrations** | 🔴 **Single Web UI only** |
+| **Maintenance Overhead** | 🟢 **Zero Dependencies (KISS & Markdown)** | 🔴 **Manual repetitive edits** | 🔴 **High** (Python, vector DBs, API keys) | 🔴 **Static text, cannot evolve** |
+| **Dialogue Extraction** | 🟢 **Natural language distillation with human-in-the-loop** | 🔴 **Not supported** | 🟢 **Supported** | 🔴 **Not supported** |
+| **Safety & Undo** | 🟢 **Atomic `.bak` snapshots, instant rollback** | 🔴 **Requires git revert** | 🟡 **Blackbox vector states** | 🔴 **No rollback history** |
 
 ### 🌟 Installation by Edition
 

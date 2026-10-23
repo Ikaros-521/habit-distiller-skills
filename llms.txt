@@ -1,0 +1,38 @@
+# Habit Distiller Skills
+
+> Zero-intrusion, portable work-contract guardian and habit distillation skill for modern AI IDEs and coding agents (Claude Code, Trae, Cursor, Antigravity, Windsurf, OpenCode, Codex).
+
+Habit Distiller acts as a personalized, zero-overhead memory and work-contract layer for AI pair-programming. It extracts how the developer expects AI to work from ongoing conversations, persists habits strictly to local sidecar storage (`~/.habit-distiller/habits.md`), and enforces these habits across all AI IDE sessions without polluting git repositories.
+
+## Key Features & Value Proposition
+
+- **Zero Codebase Pollution**: Unlike `.cursorrules` or `CLAUDE.md`, habits reside exclusively in user home storage (`~/.habit-distiller/habits.md`). Project git status remains 100% clean.
+- **Developer-Centric Work Contract**: Focuses on "how developer expects AI to work" (e.g. chain bug elimination, bilingual READMEs, concise micro-responses, fact-based compliance proof), rather than LLM personality.
+- **Structural Heading Self-Healing**: Automatically heals and restores missing canonical domain headers if accidentally deleted during manual editing, preserving all existing user rules.
+- **Multi-Profile & Workspace Cascading**: Effortlessly switch profiles (e.g. `work`, `open-source`, `default`) via natural language or bind workspace profiles via `.git/info/exclude`.
+- **Fact-Based Compliance Proof**: Enforces verifiable evidence in delivery dashboards to eliminate shallow checkmarks and rubber-stamping.
+- **Zero-Tool Latency on Fast Path**: Operates in-memory for everyday coding Q&A without disk read overhead.
+
+## Ecosystem Comparison
+
+- **vs Mem0 / Letta (MemGPT)**: Zero heavyweight cloud databases, zero Python daemons, zero external API keys. Pure local markdown with instant predictability.
+- **vs .cursorrules / CLAUDE.md**: Zero repository pollution, portable across all AI IDEs (Claude Code, Trae, Antigravity, Cursor, Windsurf).
+- **vs Native Custom Instructions**: Supports automatic extraction from dialogue, conflict arbitration, targeted deletion, and atomic backups (`habits.md.bak`).
+
+## Quickstart
+
+```bash
+# Full-Featured Edition (main)
+npx skills add Ikaros-521/habit-distiller-skills -g
+
+# Minimalist Lightweight Edition (lightweight)
+npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
+```
+
+## Key Documentation
+
+- [README.md](README.md): Bilingual full guide, natural language commands, and cross-machine sync.
+- [core/habit_governor.md](core/habit_governor.md): Architecture specifications, self-healing protocols, and conflict resolution SOP.
+- [core/habit_extractor.md](core/habit_extractor.md): 4D extraction matrix, anti-overfitting rules, and disambiguation escape hatches.
+- [core/delivery_templates.md](core/delivery_templates.md): Dual-track delivery dashboards and fact-based verification templates.
+- [skills/habit-distiller/SKILL.md](skills/habit-distiller/SKILL.md): Runtime skill definition for Agent IDEs.
