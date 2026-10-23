@@ -2,9 +2,9 @@
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
-  <img src="https://img.shields.io/badge/Version-2.8.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Version-2.9.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
-  <img src="https://img.shields.io/badge/Conflict%20Resolution-Transparent-purple" alt="Conflict Resolution">
+  <img src="https://img.shields.io/badge/Structural%20Self--Healing-Active-brightgreen" alt="Structural Self-Healing">
   <img src="https://img.shields.io/badge/Zero--Tool%20Latency-Active-brightgreen" alt="Zero Latency">
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
@@ -15,38 +15,39 @@
 
 ## 🇨🇳 中文文档
 
-**Habit Distiller Skills (v2.8)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、冲突统一揭示、零工具调用延迟、动态技术栈按需激活与事实证据核验系统**。
+**Habit Distiller Skills (v2.9)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、大纲骨架自愈、回滚透明确认、零工具调用延迟与事实证据核验系统**。
 
-它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过冲突统一透明化展示、内存缓存零读盘延迟、模糊意图主动反问澄清、动态语言作用域自适应与手改自愈保护，实现真正透明、可控且纯净的 AI 协同体验。
+它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过大纲骨架无损自愈、回滚明确确认、冲突统一透明化展示、内存缓存零读盘延迟、动态语言作用域自适应与手改自愈保护，实现真正透明、可控且纯净的 AI 协同体验。
 
-### 🌟 v2.8 进阶亮点与控制力设计
+### 🌟 v2.9 进阶亮点与控制力设计
 
-#### 1. 冲突统一揭示与用户修复仲裁 (Unified Conflict Resolution)
-- **绝对禁止大模型自作主张**：无论是同一档案内部规则自相矛盾、新旧规则冲突、还是现实对话操作与书面契约背离：
+#### 1. 核心大纲骨架无损自愈 (Structural Heading Self-Healing)
+- 开发者在本地编辑器手改 `habits.md` 时，不慎误删了领域标题（如 `## 2. 缺陷修复与防线规范`）：
+- AI 重新落盘时**自动无损补齐缺失的大纲骨架**，开发者原有的所有子规则、注释与自定义条目 100% 完好无损，杜绝后续规则插入错位。
+
+#### 2. 回滚明确说明与透明确认 (Transparent Rollback Confirmation)
+- 发送“`撤回刚才的习惯更新`”时，拒绝黑盒操作：
+- AI 物理原子恢复 `habits.md.bak` 并出具明确说明卡：`已回滚至 [时间戳] 版本，已撤销【规则名】，其余 5 项规则完好生效`。
+
+#### 3. 外部工具异常客观呈现与用户自主修复 (Factual Tool Error & User Control)
+- 当执行习惯核验（如跑单元测试 `npm test`）遭遇外部环境崩溃（端口占用、断网、环境缺失）：
+- AI 保持严整交付看板，在履约单元格**如实客观记录报错事实**，并将环境修复掌控权交还给开发者，绝不慌乱抛出未经加工的错误堆栈。
+
+#### 4. 冲突统一揭示与用户修复仲裁 (Unified Conflict Resolution)
+- 任何规则冲突（同一档案内部自相矛盾、新旧规则冲突、知行背离）：
 - AI **清清楚楚列出冲突双方与根因**，出具选项卡交由开发者亲自修复（[1] 保留A / [2] 覆盖B / [3] 明确边界分工），彻底杜绝黑盒隐式覆盖。
 
-#### 2. 内存常驻与极速微任务零工具延迟 (Zero-Tool Latency on Fast Path)
+#### 5. 内存常驻与极速微任务零工具延迟 (Zero-Tool Latency on Fast Path)
 - 日常代码生成、单行问答等微任务，习惯由会话内存直接生效：
-- **严禁在问答前主动调用 `read_file` 查盘**，秒级极速直出，无额外工具延迟；仅在用户显式发出管理口令时物理读写磁盘。
+- **严禁在问答前主动调用 `read_file` 查盘**，秒级极速直出；仅在用户显式发出管理口令时物理读写磁盘。
 
-#### 3. 意图不明与纯负向规则主动反问 (Clarification Counter-Questions)
-- 遇到开发者输入抽象主观词（“更艺术”）或纯负向约束（“不要随便改变量名”）：
-- AI **绝对禁止脑补猜测，主动向开发者反问**，列出 2~3 个具体可执行的方向让开发者确认（亦支持“强制写入”逃生）。
-
-#### 4. 动态技术栈 Scope 按需激活 (Dynamic Language Scoping)
+#### 6. 动态技术栈 Scope 按需激活 (Dynamic Language Scoping)
 - 单仓多语言（如前端 TS + 后端 Go）无需频繁手动切换档案：
 - 系统根据当前操作文件的后缀名，**动态激活对应语言技术栈规则**（如编辑 `.go` 文件激活 `[Scope: go]`，未命中语言自动静默）。
 
-#### 5. 口语化自然语言建档与多档案切换 (Conversational Profiles)
-- 会话内直接支持自然语言建档：“`保存当前习惯为档案 rust`” 或 “`新建习惯档案 python`”；
-- 随时通过“`切换习惯 work`”原子切换生效真相源。
-
-#### 6. 真实事实证据链履约核验 (Fact-Based Compliance Proof)
-- 交付看板中【习惯契约核验】单元格**必须包含真实查验实据**（关联文件:行号、单测命令、或无连带 Bug 的逻辑判定依据），严禁空洞打勾、杜绝阳奉阴违。
-
 ---
 
-### 🗂️ 六维领域插槽 (Domain Taxonomy v2.8)
+### 🗂️ 六维领域插槽 (Domain Taxonomy v2.9)
 
 1. 🧠 **`[DOMAIN: COGNITION]` 认知推演与设计前瞻**：重任务主动多想 1~2 步，推演潜在缺陷与生命周期盲区；
 2. 🛡️ **`[DOMAIN: DEFECT]` 缺陷修复与防线规范**：连带确凿缺陷无破坏一并彻底修复；
@@ -89,17 +90,17 @@ npx skills add Ikaros-521/habit-distiller-skills -g
 
 ## 🇺🇸 English Documentation
 
-**Habit Distiller Skills (v2.8)** is a zero-intrusion work-contract guardian, unified conflict resolver, zero-tool-latency cache, and dynamic language-scoping system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
+**Habit Distiller Skills (v2.9)** is a zero-intrusion work-contract guardian, structural heading self-healer, transparent rollback confirmer, and factual tool-resilient pairing system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
 
-It firmly establishes a foundational truth: **the system extracts not the model's ego or habits, but the explicit contract for how the developer expects the AI to work**. Through transparent conflict presentation, in-memory zero-tool caching on fast path, proactive clarification counter-questions, and dynamic language scoping, it delivers a transparent, controllable, and pristine AI pair-programming experience.
+It firmly establishes a foundational truth: **the system extracts not the model's ego or habits, but the explicit contract for how the developer expects the AI to work**. Through lossless structural heading self-healing, clear rollback explanations, factual tool error transparency, in-memory zero-tool caching on fast path, and dynamic language scoping, it delivers a transparent, controllable, and pristine AI pair-programming experience.
 
-### 🌟 New in v2.8: Conflict Transparency & Zero-Tool Latency
+### 🌟 New in v2.9: Structural Resilience & Transparent Rollback
 
-1. **Unified Conflict Presentation & User Resolution**: Never make unilateral assumptions when rules clash; clearly present rule tension and root causes for developer resolution.
-2. **Zero-Tool Latency on Fast Path**: Habits operate in-memory during micro-tasks; disk reading tools (`read_file`) are strictly forbidden during simple Q&A to preserve sub-second response speeds.
-3. **Clarification Counter-Questions**: Proactively prompt developers with multiple-choice questions when desires are negative ("don't do X") or ambiguous, rather than guessing.
-4. **Dynamic Language-Scope Filtering**: Automatically activates language-specific rules (`[Scope: go]`, `[Scope: ts]`) matching the active file extensions, leaving un-matched rules quiet.
-5. **Conversational Profile Branching & Fact-Based Proof**: Full natural language profile creation and verifiable concrete proof in delivery audit cells.
+1. **Structural Heading Lossless Self-Healing**: Automatically reconstructs missing canonical domain headings if accidentally deleted during manual editing, preserving 100% of the developer's surviving rules.
+2. **Transparent Rollback Confirmation**: Clearly explains which rule is being revoked and what snapshot timestamp is being restored when rolling back via natural language.
+3. **Factual Tool Error Reporting & User Control**: Succinctly logs environmental tool failures in the audit row rather than panicking, leaving repair control in the developer's hands while keeping delivery tables intact.
+4. **Unified Conflict Presentation & User Resolution**: Never make unilateral assumptions when rules clash; clearly present rule tension and root causes for developer resolution.
+5. **Zero-Tool Latency on Fast Path**: In-memory caching preserves sub-second response speeds without unnecessary disk reads during everyday Q&A.
 
 ---
 

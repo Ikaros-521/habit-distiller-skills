@@ -8,7 +8,7 @@ HABITS_DIR="$HOME/.habit-distiller"
 HABITS_FILE="$HABITS_DIR/habits.md"
 PROFILES_DIR="$HABITS_DIR/profiles"
 
-echo "=== Habit Distiller 跨机同步与管理工具 (v2.8) ==="
+echo "=== Habit Distiller 跨机同步与管理工具 (v2.9) ==="
 
 case "$TARGET" in
     "install-global")
