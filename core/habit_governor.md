@@ -1,81 +1,100 @@
-# Habit Governor: 习惯生命周期治理与防熵增引擎
+# Habit Governor: 习惯生命周期治理与全景防熵增引擎 (v2.0)
 
-本文档定义了 Habit Distiller 如何在提炼个人习惯时进行**去重、版本覆盖、语义同类合并与防膨胀收敛**的治理标准作业程序（SOP），彻底解决类似 Hermes 技能爆炸和碎片化冲突问题。
-
----
-
-## 1. 核心治理理念与目标
-
-- **痛点 (The Anti-Pattern)**：传统 Agent 习惯提取只做无脑 `Append（末尾追加）`，经过多轮演化后必然导致：
-  1. **规则冲突**：新习惯与旧习惯互相打架；
-  2. **冗余膨胀**：同义反复，过度消耗模型上下文 Token；
-  3. **零散割裂**：十几个碎片规则让 Agent 无所适从、频发幻觉。
-- **治理目标**：**“有域可归、同类必并、冲突必替、精炼收敛”**。全局规则总量始终收敛控制在 **5~8 条黄金原子原则**内。
+本文档定义了 Habit Distiller 如何在提炼与运行个人习惯时进行**冲突仲裁、跨沙箱级联、约束保真合并、红线禁忌防御、写前原子备份与主动纠偏探针**的标准作业程序（SOP）。
 
 ---
 
-## 2. 领域分类插槽 (Domain Taxonomy)
-
-所有提取的习惯必须归入以下五大核心领域插槽之一，严禁无序堆放：
-
-| 领域插槽 (Domain ID) | 覆盖范围与职责 | 治理典型示例 |
-| :--- | :--- | :--- |
-| `[DOMAIN: COGNITION]` | **认知推演与设计前瞻** | 前瞻性发散思考、盲区探索、架构推演 |
-| `[DOMAIN: DEFECT]` | **缺陷修复与防线规范** | 连带缺陷清零、证据确凿、零回归保证 |
-| `[DOMAIN: PROGRESS]` | **运行过程可观测性** | 步骤心跳微反馈、排查事实即时回传 |
-| `[DOMAIN: DELIVERY]` | **终态交付展示规范** | 双轨看板、Before/After 对照表、Artifacts |
-| `[DOMAIN: DOCS]` | **工程资产与文档规范** | 开源双语 README、中文置顶、结构对称 |
-
----
-
-## 3. 四态路由比对决策树 (4-Way Governance Decision Tree)
-
-当用户提出新习惯意向或 AI 尝试提炼时，**严禁直接追加**，必须先读取 `~/.habit-distiller/habits.md`，执行以下决策树：
+## 1. 六大核心治理架构 (6-Pillar Governance Architecture)
 
 ```mermaid
-flowchart TD
-    Start["新习惯输入 (Candidate)"] --> Read["读取 ~/.habit-distiller/habits.md"]
-    Read --> MatchDomain["定位对应 Domain 插槽"]
-    MatchDomain --> CheckExact{"与现有条款语义重叠度?"}
-    
-    CheckExact -->|"100% 语义重叠"| ActionDedup["【1. 拦截去重 (Deduplicate)】<br>不写入，提示已有该项"]
-    CheckExact -->|"< 100% 同域比对"| CheckConflict{"逻辑是否产生冲突/升级?"}
-    
-    CheckConflict -->|"是 (新要求推翻旧做法)"| ActionOverride["【2. 覆盖更新 (Override)】<br>删除旧条目，版本号升级"]
-    CheckConflict -->|"否 (同类补充/细化)"| ActionMerge["【3. 升维合并 (Semantic Merge)】<br>提取抽象共性，归纳为一个复合规则"]
-    
-    MatchDomain -->|"未命中任何现有域"| ActionInsert["【4. 挂载新域 (Insert)】<br>分配新领域插槽"]
-    
-    ActionDedup & ActionOverride & ActionMerge & ActionInsert --> OutputDiff["输出差异对比审计报表 (Diff Report)"]
+graph TD
+    subgraph 运行态治理 (Runtime Phase)
+        A1["1. 规则冲突仲裁器 (Conflict Arbitration)"]
+        A2["2. 跨沙箱路径级联解析 (Cascade Path Resolution)"]
+        A3["3. 主动纠偏感知探针 (Proactive Distillation Probe)"]
+    end
+
+    subgraph 提炼态治理 (Distillation Phase)
+        B1["4. 约束保真合并原则 (Constraint Preservation)"]
+        B2["5. 红线禁忌专属插槽 (Forbidden Domain)"]
+        B3["6. 写前原子备份与容灾 (Atomic Pre-write Backup)"]
+    end
+
+    A1 & A2 & A3 --> Habits["单一真相源 (~/.habit-distiller/habits.md)"]
+    B1 & B2 & B3 --> Habits
 ```
-
-### 1. 拦截去重 (Deduplicate)
-- **触发**：新提炼的内容已在现有条款的覆盖范围内。
-- **动作**：零写入，向用户说明已有对应保障。
-
-### 2. 覆盖更替 (Override)
-- **触发**：新偏好与旧条款存在互斥或演进更替（如：“以前要详细长文，现在只要步骤微反馈”）。
-- **动作**：物理覆盖旧条款，更新版本时间戳，杜绝新旧矛盾。
-
-### 3. 升维合并 (Semantic Merge)
-- **触发**：新偏好与旧条款属于同一领域的不同侧面（如“写 Python 要类型注解”与“写 TS 严禁 any”）。
-- **动作**：禁止分裂成两条规则，必须归纳升维为一条高阶抽象规则（如“【强类型与防错规范】”）。
-
-### 4. 挂载新域 (Insert)
-- **触发**：开辟了全新的领域（如首次加入国际化规范）。
-- **动作**：在领域插槽中建立新章节。
 
 ---
 
-## 4. 提炼时的变更差异审计报表 (Diff Audit Report)
+## 2. 治理机制细则 (Mechanisms Specification)
 
-提炼完成后，AI 必须向用户呈现清晰的 Diff 对比，征得用户同意后再落地：
+### 机制一：规则冲突智能仲裁与交互反馈 (Conflict Arbitration)
+- **场景**：当个人习惯（如中文交流）与当前项目规则（如团队 `CLAUDE.md` 强制要求英文注释）存在语义互斥时。
+- **仲裁逻辑**：AI 严禁擅自做主或产生中英混杂幻觉，必须**主动向用户抛出交互式仲裁卡片**：
+  ```markdown
+  ⚠️ 检测到规则冲突：
+  - 项目规范要求：代码注释与 Commit 必须使用英文 (来自 CLAUDE.md)
+  - 个人协同习惯：交流与交付默认使用中文 (来自 habits.md)
 
-```markdown
-### 📊 习惯治理审计报表 (Habit Governance Diff)
+  请选择本次处理策略：
+  [1] 仅当前会话临时遵从项目规范（单次豁免，不改动个人习惯）
+  [2] 调整个人习惯，增加“项目有严格规定时项目规范优先”的长期例外
+  [3] 强制坚持个人习惯（由用户自行承担潜在团队冲突）
+  ```
 
-- 🔀 【升维合并】: [DOMAIN: ...] 将旧项 A 与新项 B 合并归纳为 C
-- 🔄 【覆盖更新】: [DOMAIN: ...] 新条款已替代旧条款 (旧版逻辑已物理剔除)
-- ⏭️ 【拦截去重】: [DOMAIN: ...] 检测到与既有规则完全重叠，已自动去重
-- ➕ 【新增挂载】: [DOMAIN: ...] 新增领域独立条目
+---
+
+### 机制二：跨沙箱环境级联探测链 (Cascade Path Resolution)
+解决 Docker 容器、远程 SSH、GitHub Codespaces 等无标准用户家目录场景下的丢失问题：
 ```
+[解析顺序]
+1. 环境变量: $HABIT_DISTILLER_PATH (若设置则最高优先)
+2. 标准家目录: ~/.habit-distiller/habits.md (常规主机环境)
+3. 本地工作区私有降级: ./.agents/habits.md (沙箱/临时容器，自动配置本地隔离)
+4. 嵌入式默认预设: 内存兜底运行
+```
+
+---
+
+### 机制三：约束保真合并原则 (Constraint Preservation)
+- **痛点**：防止同类合并时大模型过度抽象，将具体指标蒸发为空洞口号（如把“行数 $\le 50$”和“复杂度 $\le 10$”合并成“写出高质量函数”）。
+- **硬性铁律**：
+  1. 升维合并只允许提升**分类层级**，严禁剔除**子项细节**；
+  2. 原规则中的**量化数字、判定边界、技术术语、特定命令**，必须以子列表项（Sub-bullets）100% 无损携带；
+  3. 严禁生成无判定准则的主观口号。
+
+---
+
+### 机制四：红线禁忌专属插槽 (Domain: Forbidden)
+- **定义**：专门用于承载**反模式、严禁使用的技术或操作底线**。
+- **生效权重**：大模型面对“负向红线”的遵从度最高。此插槽内的规则赋予 `STOP-LEVEL` 最高拦截优先级（如严禁未经询问安装新依赖、严禁生产配置中保留明文密钥等）。
+
+---
+
+### 机制五：写前原子备份与版本管理 (Atomic Pre-write Backup)
+- 任何写入、更替或合并前，系统必须自动执行：
+  1. 复制生成 `habits.md.bak` 物理镜像；
+  2. 在文件头部自增版本时间戳：`<!-- version: X.Y, updated: YYYY-MM-DD HH:mm -->`；
+  3. 若写入过程中发生异常，自动以备份恢复，确保 0 坏死率。
+
+---
+
+### 机制六：主动纠偏感知探针 (Proactive Distillation Probe)
+- **默认状态**：**默认开启 (Enabled by Default)**。
+- **触发条件**：当 AI 在同一会话中检测到用户针对同一问题模式发生 $\ge 2$ 次纠偏纠错时（例如连续两次提醒“不要用 any”或“修 bug 连带修”）。
+- **行为表现**：在完成当前修复后，主动追加提示：
+  > 💡 *“检测到您已连续针对【类型严谨性】进行了指导，是否需要将此习惯沉淀进您的 habits.md？”*
+- **Token 考量与免打扰**：用户可通过在提示词中声明“禁用主动习惯探针”临时静音。
+
+---
+
+## 3. 六维领域插槽 (Domain Taxonomy v2.0)
+
+| 领域插槽 (Domain ID) | 职责与范围 |
+| :--- | :--- |
+| `[DOMAIN: COGNITION]` | **认知推演与设计前瞻**（主动推演 1~2 步，推演盲区，降低设计缺陷） |
+| `[DOMAIN: DEFECT]` | **缺陷修复与防线规范**（连锁确凿缺陷清零，零回归破坏） |
+| `[DOMAIN: PROGRESS]` | **运行过程可观测性**（长流程微心跳反馈，拒绝黑盒） |
+| `[DOMAIN: DELIVERY]` | **终态交付展示规范**（双轨看板、Before/After 对照表） |
+| `[DOMAIN: DOCS]` | **工程资产与文档规范**（开源项目中英双语、中文置顶） |
+| `[DOMAIN: FORBIDDEN]` | **红线禁忌与反模式**（绝对禁止的编码惯性、危险操作与架构恶习） |

@@ -1,10 +1,11 @@
-# Habit Distiller Skills (零侵入全局伴生习惯与防熵增治理系统)
+# Habit Distiller Skills (零侵入全局伴生习惯守护与全景治理系统)
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
+  <img src="https://img.shields.io/badge/Version-2.0.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/Vercel%20Skills-Compatible-black.svg" alt="Skills CLI">
-  <img src="https://img.shields.io/badge/Architecture-Anti--Hermes%20Governance-orange" alt="Governance Architecture">
+  <img src="https://img.shields.io/badge/Architecture-6--Pillar%20Governance-orange" alt="Governance Architecture">
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
@@ -14,91 +15,101 @@
 
 ## 🇨🇳 中文文档
 
-**Habit Distiller Skills** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**零侵入全局伴生习惯管理与防熵增生命周期治理框架**。
+**Habit Distiller Skills** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**零侵入全局伴生习惯守护与防熵增全景治理框架**。
 
-遵循 **第一性原理** 与 **KISS 原则**，它彻底解决了人机协同中的“反复纠偏”与“类似 Hermes 技能爆炸混乱”痛点。坚决杜绝侵入式篡改项目代码库（如 `CLAUDE.md`、`.cursorrules`），并通过独创的**四态治理决策树**实现习惯的“自动去重、新旧更替、同类升维合并”，使个人习惯集始终维持在 5~8 条黄金原子原则。
+遵循 **第一性原理** 与 **KISS 原则**，它不仅消除了人机协同中的“反复纠偏”与“类似 Hermes 规则膨胀冲突”，还彻底杜绝侵入式修改任何项目代码库。通过内置的 **六大进阶治理支柱**，让 AI 既懂你的习惯，又绝不越界。
 
-### 🌟 核心突破：如何杜绝“Hermes 碎片化混乱”？
-
-传统 Agent 的习惯记录通常只是粗暴的 `Append（追加）`，随着时间推移必然出现：新旧冲突、同义反复、条目膨胀。Habit Distiller 引入了 **Habit Governor（防熵增治理引擎）**：
+### 🌟 六大进阶治理支柱 (The 6 Pillars of Governance)
 
 ```mermaid
-flowchart TD
-    A["新提炼习惯 (Candidate)"] --> B["1. 检索现有单一真相源 (~/.habit-distiller/habits.md)"]
-    B --> C{"2. 四态路由比对决策树 (4-Way Governance Tree)"}
-    
-    C -->|"100% 语义重叠"| D["【拦截去重 (Deduplicate)】<br>自动跳过，零重复写入"]
-    C -->|"逻辑演化或冲突"| E["【覆盖更新 (Override)】<br>新条款物理覆盖旧条款，杜绝新旧矛盾"]
-    C -->|"同类补充与细化"| F["【升维合并 (Semantic Merge)】<br>提取共性，归纳为一个复合原子规则"]
-    C -->|"全新领域"| G["【挂载新域 (Insert)】<br>分配五大固定领域插槽之一"]
-    
-    D & E & F & G --> H["3. 生成差异对比审计报表 (Diff Report) 提请确认"]
-    H --> I["落盘至单一真相源 (项目代码库 0 侵入)"]
+graph TD
+    subgraph 运行态防线 (Runtime Protection)
+        A1["1. 规则冲突智能仲裁 (用户卡片决策)"]
+        A2["2. 跨沙箱路径级联解析 (环境变量 -> 家目录 -> 本地降级)"]
+        A3["3. 主动纠偏感知探针 (同类纠偏 >= 2 次主动提醒)"]
+    end
+
+    subgraph 提炼态防线 (Distillation Integrity)
+        B1["4. 约束保真合并原则 (指标参数 100% 保留，防空洞化)"]
+        B2["5. 红线禁忌专属插槽 (Domain: Forbidden 顶级阻断)"]
+        B3["6. 写前原子备份与版本化 (habits.md.bak 容灾)"]
+    end
+
+    A1 & A2 & A3 --> Habits["单一真相源 (~/.habit-distiller/habits.md)"]
+    B1 & B2 & B3 --> Habits
 ```
 
-### 🗂️ 五大固定领域插槽 (Domain Taxonomy)
+#### 1. 规则冲突智能仲裁与交互反馈 (Conflict Arbitration)
+- **痛点**：当个人习惯（如中文交流）与当前团队项目规则（如团队 `CLAUDE.md` 强制要求英文注释）互斥时，传统方案会导致 AI 认知混乱。
+- **解法**：AI 严禁盲目覆盖，主动向用户抛出三选一决策卡片：
+  - `[1] 临时策略`：仅当前会话单次豁免，遵从项目规范；
+  - `[2] 持久策略`：自动为个人习惯追加“项目硬性规范优先”长期例外；
+  - `[3] 强制习惯`：坚持个人偏好。
 
-所有习惯必须归入以下五大插槽，严格收敛控制上下文预算：
-1. 🧠 **`[DOMAIN: COGNITION]` 认知推演与设计前瞻**：主动多想 1~2 步，推演潜在缺陷与生命周期盲区，协助降低设计缺陷概率；
+#### 2. 跨沙箱环境级联解析 (Cascade Path Resolution)
+自动适配本地环境、Docker 容器、远程 SSH 与 GitHub Codespaces：
+`$HABIT_DISTILLER_PATH` 环境变量优先 $\to$ `~/.habit-distiller/habits.md` $\to$ 当前工程 `./.agents/habits.md` 本地私有降级 $\to$ 内存内置预设。
+
+#### 3. 约束保真合并原则 (Constraint Preservation)
+同类合并时，**严禁抽象泛化为空洞套话**。子规则中的量化指标（如“行数 $\le 50$”、“单测覆盖”、“无 warning”）、判定边界与命令，必须以子列表项 100% 原样无损保留。
+
+#### 4. 红线禁忌专属插槽 (`[DOMAIN: FORBIDDEN]`)
+专门承载绝对禁止的反模式、安全底线（如严禁未经许可引入新大型依赖、严禁删除原作者注释、严禁硬编码密钥），大模型面对负向红线具备最高拦截遵从度。
+
+#### 5. 写前原子备份与容灾 (Atomic Pre-write Backup)
+任何更新前自动生成 `habits.md.bak` 物理镜像，头部记录版本自增元数据，杜绝网络波动或模型幻觉导致规则库损毁。
+
+#### 6. 主动纠偏感知探针 (Proactive Distillation Probe)
+- **运行机制**：**默认开启**。当 AI 在同一会话中检测到用户针对同一问题模式发生 $\ge 2$ 次纠正纠偏时，AI 在修复完成后会主动探询：*“检测到您多次指导【代码规范】，是否将其沉淀进您的习惯库？”*
+- **Token 考量与免打扰**：虽然探针会带来极其微量的上下文分析 Token，但能避免未来几十轮对话反复纠偏产生的高达数万 Token 的返工开销。若您需要临时静音，只需在对话中发送 **“禁用主动习惯探针”** 即可。
+
+---
+
+### 🗂️ 六维领域插槽 (Domain Taxonomy)
+
+全局规则始终收敛在 5~8 条黄金原子原则，分类如下：
+1. 🧠 **`[DOMAIN: COGNITION]` 认知推演与设计前瞻**：主动多想 1~2 步，推演潜在缺陷与生命周期盲区；
 2. 🛡️ **`[DOMAIN: DEFECT]` 缺陷修复与防线规范**：连带确凿缺陷无破坏一并彻底修复；
 3. 📡 **`[DOMAIN: PROGRESS]` 运行过程可观测性**：长流程或批处理时输出步骤心跳微反馈；
 4. 📊 **`[DOMAIN: DELIVERY]` 终态交付展示规范**：双轨看板、Before/After 对照表；
-5. 🌐 **`[DOMAIN: DOCS]` 工程资产与文档规范**：面向公开项目，文档默认中英双语、中文置顶。
+5. 🌐 **`[DOMAIN: DOCS]` 工程资产与文档规范**：面向公开项目，文档默认中英双语、中文置顶；
+6. 🚫 **`[DOMAIN: FORBIDDEN]` 红线禁忌与反模式**：高危行为与恶习强行阻断。
 
-### 🚀 安装与使用
+---
 
-#### 1. 一键全局安装（推荐）
-通过 Vercel `skills` CLI 一键全局安装：
+### 🚀 安装与分发
 
 ```bash
+# 全局挂载 (所有支持 skills 的 AI IDE 通用)
 npx skills add Ikaros-521/habit-distiller-skills -g
 ```
-
-或使用本地挂载脚本：
-```powershell
-# Windows
-.\scripts\sync.ps1 -Target install-global
-
-# Linux / macOS
-./scripts/sync.sh install-global
-```
-
-#### 2. 在对话中随时提炼新习惯
-在任何 AI IDE 会话中发送：
-> “提炼刚才的对话习惯”
-
-AI 会自动触发治理引擎，比对去重、冲突更新或同类合并，经您审核后落盘至 `~/.habit-distiller/habits.md`。
 
 ---
 
 ## 🇺🇸 English Documentation
 
-**Habit Distiller Skills** is a zero-intrusion, sidecar habit management and anti-entropy lifecycle governance framework designed for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
+**Habit Distiller Skills (v2.0)** is a zero-intrusion, sidecar habit management and anti-entropy governance system built for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
 
-Grounded in **First Principles** and the **KISS Principle**, it tackles repeated alignment friction while eliminating the notorious **"Hermes Rule Explosion"**—where unconstrained additions lead to bloat, conflict, and confusion. It never mutates project-level rule files, and employs a **4-Way Governance Decision Tree** to automatically deduplicate, override, and semantically merge developer habits into 5~8 golden atomic rules.
+It solves recurring alignment friction and the notorious "Hermes fragmentation bloat" while strictly guaranteeing **0% code pollution to project repositories**.
 
-### 🌟 Solving the "Hermes Fragmentation Dilemma"
+### 🌟 The 6 Pillars of Governance
 
-- **The Problem with Naive Appends**: Stacking instructions sequentially leads to mutual contradictions, synonym bloat, and context degradation.
-- **The Habit Governor Engine**:
-  - ⏭️ **Deduplicate**: 100% semantic overlaps are skipped automatically.
-  - 🔄 **Override**: New practices physically supersede obsolete rules to prevent conflict.
-  - 🔀 **Semantic Merge**: Granular habits in the same domain are unified into consolidated principles.
-  - ➕ **Insert**: Genuinely new practices are slotted into one of five fixed domains.
+1. **Conflict Arbitration**: Interactive decision prompts (`Session-Only`, `Habit Exception`, or `Force Habit`) when personal habits clash with project-level `CLAUDE.md`.
+2. **Cascade Path Resolution**: Seamless fallback: `$HABIT_DISTILLER_PATH` $\to$ `~/.habit-distiller/habits.md` $\to$ `./.agents/habits.md` (containers / remote SSH) $\to$ memory presets.
+3. **Constraint Preservation**: Merging keeps explicit numbers, metrics, and criteria intact in sub-bullets, preventing rules from degrading into vague empty slogans.
+4. **Forbidden Domain (`[DOMAIN: FORBIDDEN]`)**: Highest-priority red-line guardrails against antipatterns and hazardous mutations.
+5. **Atomic Pre-write Backup**: Generates `habits.md.bak` snapshots and metadata headers before any write operation.
+6. **Proactive Distillation Probe (Default ON)**:
+   - Automatically prompts to persist rules when $\ge 2$ consecutive user corrections occur on the same pattern.
+   - **Token Economy**: Saves thousands of rework tokens over time. Can be silenced anytime by saying *"disable proactive probe"*.
 
-### 🗂️ Five Fixed Domain Slots
-
-1. 🧠 **`[DOMAIN: COGNITION]` Foresight & Blind-Spot Exploration**: Think 1~2 steps ahead to catch potential lifecycle and architectural flaws.
-2. 🛡️ **`[DOMAIN: DEFECT]` Chain Bug Sweep**: Eliminate verified collateral bugs thoroughly without causing regression.
-3. 📡 **`[DOMAIN: PROGRESS]` Observable In-Flight Feedback**: Real-time step heartbeat during multi-step runs.
-4. 📊 **`[DOMAIN: DELIVERY]` Dual-Track Dashboard**: High-readability Before/After summaries and IDE Artifacts.
-5. 🌐 **`[DOMAIN: DOCS]` Bilingual Documentation**: Symmetrical bilingual READMEs (Chinese default + English) for open-source repositories.
-
-### 🚀 Installation & Sync
-
-```bash
-npx skills add Ikaros-521/habit-distiller-skills -g
-```
+### 🗂️ Six Fixed Domain Slots
+1. 🧠 **COGNITION**: Proactive Blind-Spot & Lifecycle Exploration.
+2. 🛡️ **DEFECT**: Chain Collateral Defect Sweep.
+3. 📡 **PROGRESS**: Observable In-Flight Heartbeat Feedback.
+4. 📊 **DELIVERY**: Dual-Track Before/After Dashboards & Artifacts.
+5. 🌐 **DOCS**: Symmetrical Bilingual Open-Source Docs (Chinese Default).
+6. 🚫 **FORBIDDEN**: Anti-Patterns and Destructive Behavior Guardrails.
 
 ---
 
