@@ -1,0 +1,11 @@
+# Local & Personal Habit Profiles (Do NOT commit to Git)
+profiles/
+my-habits/
+*.local.*
+*.backup
+
+# Environment & Temp
+.env
+*.log
+.DS_Store
+Thumbs.db
