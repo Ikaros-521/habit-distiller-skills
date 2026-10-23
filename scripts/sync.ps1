@@ -10,7 +10,7 @@ $HabitsConfigDir = "$HOME\.habit-distiller"
 $HabitsConfigFile = "$HabitsConfigDir\habits.md"
 $ProfilesDir = "$HabitsConfigDir\profiles"
 
-Write-Host "=== Habit Distiller Portable Sync & Management Tool (v2.7) ===" -ForegroundColor Cyan
+Write-Host "=== Habit Distiller Portable Sync & Management Tool (v2.8) ===" -ForegroundColor Cyan
 
 switch ($Target.ToLower()) {
     "install-global" {
