@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/Codebase%20Pollution-0%25-brightgreen" alt="Zero Pollution">
 </p>
 
-[**简体中文**](#-中文文档) | [**English**](#-english-documentation) | [🌿 **轻量精简版 (Lightweight Branch)**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight) | [📄 **llms.txt**](llms.txt)
+[**English Document (英文文档)**](README_en.md) | [🌿 **轻量精简版 (Lightweight Branch)**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight) | [📄 **llms.txt**](llms.txt)
 
 > 💡 **版本选装指引**：
 > - **主线版本 (`main`)**：**全功能企业级治理版**（大纲骨架自愈、多档案无缝切换、事实证据链核验、冲突统一揭示、工作区零污染层叠）；
@@ -18,11 +18,13 @@
 
 ---
 
-## 🇨🇳 中文文档
+## 🇨🇳 项目概览
 
 **Habit Distiller Skills (v2.9)** 是一个面向现代 AI IDE / Agent（如 Trae、Claude Code、Cursor、Antigravity、Windsurf 等）的**用户协同契约守护、大纲骨架自愈、回滚透明确认、零工具调用延迟与事实证据核验系统**。
 
 它正本清源地确立了一个基本事实：**系统提炼的不是模型的自恋习惯，而是“开发者期望模型怎么干活的具体契约”**。通过大纲骨架无损自愈、回滚明确确认、冲突统一透明化展示、内存缓存零读盘延迟、动态语言作用域自适应与手改自愈保护，实现真正透明、可控且纯净的 AI 协同体验。
+
+---
 
 ### 📊 业界主流方案对比 (Ecosystem Comparison)
 
@@ -70,7 +72,7 @@
 2. 🛡️ **`[DOMAIN: DEFECT]` 缺陷修复与防线规范**：连带确凿缺陷无破坏一并彻底修复；
 3. 📡 **`[DOMAIN: PROGRESS]` 运行过程与意图自适应**：微任务极速直通（零工具读盘），重任务步骤心跳；
 4. 📊 **`[DOMAIN: DELIVERY]` 终态交付展示规范**：双轨看板、真实事实证据链、Before/After 对照表；
-5. 🌐 **`[DOMAIN: DOCS]` 工程资产与文档规范**：开源公开项目默认中英双语、中文置顶；
+5. 🌐 **`[DOMAIN: DOCS]` 工程资产与文档规范**：开源公开项目默认双文件独立中英双语、顶栏互挂超链接跳转；
 6. 🚫 **`[DOMAIN: FORBIDDEN]` 红线禁忌与反模式防线**：绝对禁止的高危操作阻断。
 
 ---
@@ -107,44 +109,6 @@ npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
 ./scripts/sync.sh export ./my-habits.md                      # 导出习惯
 ./scripts/sync.sh import ./my-habits.md                      # 导入习惯 (带安全扫描)
 ```
-
----
-
-## 🇺🇸 English Documentation
-
-**Habit Distiller Skills (v2.9)** is a zero-intrusion work-contract guardian, structural heading self-healer, transparent rollback confirmer, and factual tool-resilient pairing system for modern AI IDEs and agents (Trae, Claude Code, Cursor, Antigravity, Windsurf, etc.).
-
-> 💡 **Edition Guide**:
-> - **Main Edition (`main`)**: **Full-Featured Governance Edition** (lossless heading self-healing, multi-profile switcher, fact-based compliance proof, unified conflict resolution, workspace cascading).
-> - **Lightweight Edition (`lightweight`)**: **KISS Minimalist Edition** (35-line lean definition, strictly focused on 3-step habit distillation). Visit the 👉 [**lightweight branch**](https://github.com/Ikaros-521/habit-distiller-skills/tree/lightweight).
-
-### 📊 Ecosystem Comparison
-
-| Dimension | Habit Distiller Skills | Project Rules (.cursorrules / CLAUDE.md) | Vector Memory (Mem0 / Letta) | Custom Instructions (Web UI) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Codebase Pollution** | 🟢 **0% Clean** (`~/.habit-distiller`) | 🔴 **High** (pollutes git history) | 🟡 **Medium** (requires external DB) | 🟢 **0% Clean** |
-| **Cross-IDE Portability** | 🟢 **Universal** (Claude Code, Trae, Antigravity, Cursor) | 🔴 **Vendor-locked** | 🟡 **Requires SDK integrations** | 🔴 **Single Web UI only** |
-| **Maintenance Overhead** | 🟢 **Zero Dependencies (KISS & Markdown)** | 🔴 **Manual repetitive edits** | 🔴 **High** (Python, vector DBs, API keys) | 🔴 **Static text, cannot evolve** |
-| **Dialogue Extraction** | 🟢 **Natural language distillation with human-in-the-loop** | 🔴 **Not supported** | 🟢 **Supported** | 🔴 **Not supported** |
-| **Safety & Undo** | 🟢 **Atomic `.bak` snapshots, instant rollback** | 🔴 **Requires git revert** | 🟡 **Blackbox vector states** | 🔴 **No rollback history** |
-
-### 🌟 Installation by Edition
-
-```bash
-# Option A: Install Full-Featured Edition (main branch)
-npx skills add Ikaros-521/habit-distiller-skills -g
-
-# Option B: Install Minimalist Lightweight Edition (lightweight branch)
-npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
-```
-
-### 🌟 New in v2.9: Structural Resilience & Transparent Rollback
-
-1. **Structural Heading Lossless Self-Healing**: Automatically reconstructs missing canonical domain headings if accidentally deleted during manual editing, preserving 100% of the developer's surviving rules.
-2. **Transparent Rollback Confirmation**: Clearly explains which rule is being revoked and what snapshot timestamp is being restored when rolling back via natural language.
-3. **Factual Tool Error Reporting & User Control**: Succinctly logs environmental tool failures in the audit row rather than panicking, leaving repair control in the developer's hands while keeping delivery tables intact.
-4. **Unified Conflict Presentation & User Resolution**: Never make unilateral assumptions when rules clash; clearly present rule tension and root causes for developer resolution.
-5. **Zero-Tool Latency on Fast Path**: In-memory caching preserves sub-second response speeds without unnecessary disk reads during everyday Q&A.
 
 ---
 

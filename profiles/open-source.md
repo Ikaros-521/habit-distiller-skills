@@ -34,7 +34,7 @@
 
 ## 5. 开源文档国际化规范 (Domain: Docs)
 - **开源双语文档 (Bilingual README Protocol)** `[Scope: global]`:
-  针对开源至 GitHub 等公开平台的项目，项目文档（README）必须采用中英双语，默认以简体中文为主置顶呈现，并保持双语结构对称对齐与一键锚点跳转。
+  针对开源至 GitHub 等公开平台的项目，文档采用独立的双文件架构：主文件 README.md 默认为简体中文，另设独立的 README_en.md 英文文件，双方顶栏互挂超链接跳转。
 
 ---
 

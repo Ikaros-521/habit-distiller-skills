@@ -31,7 +31,8 @@ npx skills add Ikaros-521/habit-distiller-skills#lightweight -g
 
 ## Key Documentation
 
-- [README.md](README.md): Bilingual full guide, natural language commands, and cross-machine sync.
+- [README.md](README.md): Chinese documentation, natural language commands, and cross-machine sync.
+- [README_en.md](README_en.md): English documentation mirrored with reciprocal links.
 - [core/habit_governor.md](core/habit_governor.md): Architecture specifications, self-healing protocols, and conflict resolution SOP.
 - [core/habit_extractor.md](core/habit_extractor.md): 4D extraction matrix, anti-overfitting rules, and disambiguation escape hatches.
 - [core/delivery_templates.md](core/delivery_templates.md): Dual-track delivery dashboards and fact-based verification templates.
