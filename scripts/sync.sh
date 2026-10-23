@@ -2,58 +2,53 @@
 set -e
 
 TARGET=${1:-"install-global"}
+FILE_PATH=${2:-""}
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+HABITS_FILE="$HOME/.habit-distiller/habits.md"
 
-echo "=== Habit Distiller 零侵入全局挂载工具 (Bash) ==="
+echo "=== Habit Distiller 跨机同步与管理工具 (Bash) ==="
 
 case "$TARGET" in
     "install-global")
-        # 1. Antigravity / Gemini
-        GEMINI_SKILL="$HOME/.gemini/config/skills/habit-distiller"
-        mkdir -p "$GEMINI_SKILL"
-        cp -r "$REPO_ROOT/skills/habit-distiller/"* "$GEMINI_SKILL/"
-        echo " [OK] 已挂载至 Antigravity: $GEMINI_SKILL"
+        mkdir -p "$HOME/.gemini/config/skills/habit-distiller"
+        cp -r "$REPO_ROOT/skills/habit-distiller/"* "$HOME/.gemini/config/skills/habit-distiller/"
+        echo " [OK] 已挂载至 Antigravity"
 
-        # 2. Claude Code
         if [ -d "$HOME/.claude" ]; then
-            CLAUDE_SKILL="$HOME/.claude/skills/habit-distiller"
-            mkdir -p "$CLAUDE_SKILL"
-            cp -r "$REPO_ROOT/skills/habit-distiller/"* "$CLAUDE_SKILL/"
-            echo " [OK] 已挂载至 Claude Code: $CLAUDE_SKILL"
+            mkdir -p "$HOME/.claude/skills/habit-distiller"
+            cp -r "$REPO_ROOT/skills/habit-distiller/"* "$HOME/.claude/skills/habit-distiller/"
+            echo " [OK] 已挂载至 Claude Code"
         fi
 
-        # 3. 初始化独立真相源 ~/.habit-distiller/habits.md
-        HABITS_DIR="$HOME/.habit-distiller"
-        HABITS_FILE="$HABITS_DIR/habits.md"
-        mkdir -p "$HABITS_DIR"
+        mkdir -p "$HOME/.habit-distiller"
         if [ ! -f "$HABITS_FILE" ]; then
-            cat << 'EOF' > "$HABITS_FILE"
-# 开发者个人专属协同习惯 (Personal Habits Profile)
-> 本文件由 habit-distiller 独立维护，作为所有 AI IDE 会话共享的单一真相源。
-> 绝不侵入、篡改任何项目的代码库或 IDE 原生规则文件。
-
----
-
-## 1. 缺陷修复与防线规范
-- **缺陷连带清零 (Chain Bug Sweep)**：排查中关联确凿缺陷无破坏一并彻底修复。
-
-## 2. 运行过程透明度规范
-- **运行过程反馈 (Observable Progress Feedback)**：多步排查与长流程输出关键节点反馈。
-
-## 3. 终态交付展示规范
-- **双轨化交付展现 (Dual-Track Delivery Dashboard)**：终态总结采用结构化看板呈现。
-
-## 4. 开源文档国际化规范
-- **开源双语文档 (Bilingual README Protocol)**：面向公开开源项目，文档默认中英双语、中文置顶。
-EOF
-            echo " [OK] 已初始化独立配置文件: $HABITS_FILE"
-        else
-            echo " [OK] 现有专属习惯文件已保留: $HABITS_FILE"
+            cp "$REPO_ROOT/presets/proactive-exploration.md" "$HABITS_FILE"
+            echo " [OK] 已初始化: $HABITS_FILE"
         fi
-
-        echo "SUCCESS: 全局零侵入部署完成！"
+        ;;
+    "export")
+        DEST_FILE=${FILE_PATH:-"./my-habits-export.md"}
+        if [ ! -f "$HABITS_FILE" ]; then
+            echo "错误: 未找到 $HABITS_FILE"
+            exit 1
+        fi
+        cp "$HABITS_FILE" "$DEST_FILE"
+        echo "SUCCESS: 已导出习惯至 $DEST_FILE"
+        ;;
+    "import")
+        if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
+            echo "错误: 请指定有效的导入文件路径，例如: ./scripts/sync.sh import ./my-habits-export.md"
+            exit 1
+        fi
+        mkdir -p "$HOME/.habit-distiller"
+        if [ -f "$HABITS_FILE" ]; then
+            cp "$HABITS_FILE" "$HABITS_FILE.bak"
+            echo " [OK] 现有配置已备份至 $HABITS_FILE.bak"
+        fi
+        cp "$FILE_PATH" "$HABITS_FILE"
+        echo "SUCCESS: 导入成功！已更新至 $HABITS_FILE"
         ;;
     *)
-        echo "未知目标: $TARGET"
+        echo "未知目标: $TARGET. 支持: install-global, export, import"
         ;;
 esac
